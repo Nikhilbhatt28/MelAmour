@@ -20,7 +20,7 @@ import { Client } from "@stomp/stompjs";
 
 import "./Room.css";
 
-const WS_URL = "ws://localhost:8080/ws";
+const WS_URL = "wss://melamour-backend.onrender.com/ws";
 
 function Room({
   roomCode = "L8K2QF",

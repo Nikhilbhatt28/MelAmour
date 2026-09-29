@@ -18,7 +18,7 @@ import {
 import "./App.css";
 import Room from "./Room";
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "https://melamour-backend.onrender.com/api";
 
 const features = [
   {
