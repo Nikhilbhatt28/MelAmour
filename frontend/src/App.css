@@ -2426,3 +2426,27 @@ body,
 #root {
   scroll-margin-top: 0 !important;
 }
+/* HOME SCROLL TEST — DO NOT TOUCH BACKGROUND */
+html,
+body,
+#root {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.site {
+  height: auto !important;
+  min-height: 100vh !important;
+  max-height: none !important;
+  overflow: visible !important;
+  transform: none !important;
+}
+
+.site::after {
+  position: fixed !important;
+  inset: -4% !important;
+  pointer-events: none !important;
+  transform: scale(1.03) !important;
+}
