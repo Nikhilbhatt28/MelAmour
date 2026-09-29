@@ -1,0 +1,60 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: melamour-postgres
+
+    environment:
+      POSTGRES_DB: melamour
+      POSTGRES_USER: melamour
+      POSTGRES_PASSWORD: melamour
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - melamour_postgres_data:/var/lib/postgresql/data
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U melamour -d melamour"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  backend:
+    image: melamour-backend:latest
+    container_name: melamour-backend
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/melamour
+      SPRING_DATASOURCE_USERNAME: melamour
+      SPRING_DATASOURCE_PASSWORD: melamour
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+
+  frontend:
+    image: melamour-frontend:latest
+    container_name: melamour-frontend
+
+    ports:
+      - "3000:80"
+
+    depends_on:
+      - backend
+
+    restart: unless-stopped
+
+
+volumes:
+  melamour_postgres_data:
