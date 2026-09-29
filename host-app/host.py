@@ -105,7 +105,7 @@ class SystemAudioTrack(MediaStreamTrack):
 
         frame = AudioFrame.from_ndarray(
             data,
-            format="flt",
+            format="fltp",
             layout="stereo"
         )
 
