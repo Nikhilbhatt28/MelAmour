@@ -1,30 +1,30 @@
 /* =========================================================
-   MELAMOUR — CINEMATIC AMBER / CHARCOAL THEME
-   Replace the complete Room.css with this
+   MELAMOUR — CINEMATIC AMBER / CHARCOAL THEME (REVAMPED)
    ========================================================= */
 
 :root {
-    --mel-bg: #090a0b;
-    --mel-panel: rgba(14, 16, 17, 0.94);
-    --mel-panel-soft: rgba(19, 21, 22, 0.9);
+    --mel-bg: #07080a;
+    --mel-panel: rgba(13, 15, 18, 0.88);
+    --mel-panel-soft: rgba(18, 20, 24, 0.82);
 
-    --mel-border: rgba(255, 255, 255, 0.075);
+    --mel-border: rgba(255, 255, 255, 0.085);
     --mel-border-soft: rgba(255, 255, 255, 0.045);
 
-    --mel-gold: #d9a653;
-    --mel-gold-light: #f0c978;
+    --mel-gold: #e6af55;
+    --mel-gold-light: #ffce75;
+    --mel-gold-glow: rgba(230, 175, 85, 0.22);
 
-    --mel-text: #f1eee8;
-    --mel-text-soft: #b3afa7;
-    --mel-muted: #77756f;
+    --mel-text: #f6f3ed;
+    --mel-text-soft: #b8b3a8;
+    --mel-muted: #7d7a72;
 
-    --mel-online: #45d889;
-    --mel-danger: #df5b57;
+    --mel-online: #3ee089;
+    --mel-danger: #f26460;
 }
 
 
 /* =========================================================
-   PAGE
+   PAGE & FLOATING MUSICAL NOTES BACKGROUND
    ========================================================= */
 
 .room-page {
@@ -34,39 +34,62 @@
     padding: 0;
 
     color: var(--mel-text);
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     display: flex;
     flex-direction: column;
 
     background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(217, 166, 83, 0.055),
-            transparent 35%
-        ),
-        linear-gradient(
-            180deg,
-            #0a0b0c 0%,
-            #090a0b 55%,
-            #080909 100%
-        );
+        radial-gradient(circle at 50% -20%, rgba(230, 175, 85, 0.08), transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(62, 224, 137, 0.03), transparent 40%),
+        linear-gradient(180deg, #050608 0%, #07080a 50%, #040506 100%);
 
     box-sizing: border-box;
     overflow-x: hidden;
+    position: relative;
 }
 
 .room-page *,
 .room-page *::before,
 .room-page *::after {
     box-sizing: border-box;
+}
+
+/* Background Animated Musical Notes Container */
+.room-page::before {
+    content: "♪   ♫   ♬   ♩   ♪   ♫   ♬   ♩   ♪   ♫   ♬";
+    position: fixed;
+    top: -50px;
+    left: 0;
+    width: 200%;
+    font-size: 85px;
+    color: rgba(230, 175, 85, 0.018);
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 0;
+    animation: floatNotes 35s linear infinite;
+}
+
+@keyframes floatNotes {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(105vh) translateX(-100px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(210vh) translateX(0) rotate(0deg);
+    }
+}
+
+/* Ensure children sit above background animation */
+.room-header,
+.room-main,
+.room-footer {
+    position: relative;
+    z-index: 2;
 }
 
 
@@ -76,345 +99,289 @@
 
 .room-header {
     width: 100%;
-    height: 72px;
-
-    padding: 0 26px;
-
+    height: 76px;
+    padding: 0 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     border-bottom: 1px solid var(--mel-border);
-
-    background: rgba(9, 10, 11, 0.92);
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
+    background: rgba(7, 8, 10, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     flex-shrink: 0;
-    position: relative;
-    z-index: 10;
 }
-
 
 .room-brand {
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 14px;
 }
 
-
 .room-back {
-    width: 34px;
-    height: 34px;
-
+    width: 38px;
+    height: 38px;
     border: 1px solid var(--mel-border);
-    border-radius: 9px;
-
-    background: #131516;
-    color: #aaa79f;
-
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--mel-text-soft);
     display: grid;
     place-items: center;
-
     cursor: pointer;
-
-    transition: 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 .room-back:hover {
     color: var(--mel-gold-light);
-    border-color: rgba(217, 166, 83, 0.3);
+    border-color: rgba(230, 175, 85, 0.4);
+    background: rgba(230, 175, 85, 0.05);
     transform: translateX(-2px);
 }
 
-
 .room-brand-icon {
-    width: 36px;
-    height: 36px;
-
-    border-radius: 10px;
-
-    background: rgba(217, 166, 83, 0.09);
-
-    border: 1px solid rgba(217, 166, 83, 0.18);
-
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(230, 175, 85, 0.1);
+    border: 1px solid rgba(230, 175, 85, 0.22);
     color: var(--mel-gold);
-
     display: grid;
     place-items: center;
+    box-shadow: 0 0 15px rgba(230, 175, 85, 0.12);
 }
-
 
 .room-brand-name {
-    font-size: 15px;
-    font-weight: 750;
-    letter-spacing: -0.35px;
-
-    color: #f3f0e9;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--mel-text);
 }
-
 
 .room-brand-sub {
-    margin-top: 2px;
-
-    font-size: 10px;
-
-    color: #77766f;
+    margin-top: 3px;
+    font-size: 10.5px;
+    color: var(--mel-muted);
 }
-
 
 .room-header-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
 }
 
-
 /* LIVE */
-
 .live-status {
     display: flex;
     align-items: center;
-    gap: 7px;
-
-    font-size: 9px;
+    gap: 8px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.1px;
-
-    color: #918f88;
+    letter-spacing: 1.2px;
+    color: var(--mel-text-soft);
 }
 
 .live-status span {
-    width: 6px;
-    height: 6px;
-
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-
     background: var(--mel-online);
-
-    box-shadow:
-        0 0 9px rgba(69, 216, 137, 0.35);
+    box-shadow: 0 0 10px rgba(62, 224, 137, 0.5);
+    animation: pulseLive 2s infinite;
 }
 
+@keyframes pulseLive {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(62, 224, 137, 0.5);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(62, 224, 137, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(62, 224, 137, 0);
+    }
+}
 
 /* ROOM CODE */
-
 .room-code-pill {
-    height: 36px;
-
-    padding: 0 7px 0 12px;
-
+    height: 38px;
+    padding: 0 8px 0 14px;
     display: flex;
     align-items: center;
-    gap: 9px;
-
-    border-radius: 9px;
-
-    background: #141617;
-
+    gap: 10px;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.025);
     border: 1px solid var(--mel-border);
 }
 
 .room-code-pill span {
-    font-size: 10px;
-    color: #696861;
+    font-size: 10.5px;
+    color: var(--mel-muted);
 }
 
 .room-code-pill strong {
-    font-size: 11px;
-    letter-spacing: 1.4px;
-    color: #e0dcd4;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--mel-text);
 }
 
 .room-code-pill button {
-    width: 27px;
-    height: 27px;
-
+    width: 29px;
+    height: 29px;
     border: 0;
-    border-radius: 7px;
-
-    background: rgba(255, 255, 255, 0.045);
-
-    color: #7d7b74;
-
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--mel-text-soft);
     display: grid;
     place-items: center;
-
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .room-code-pill button:hover {
     color: var(--mel-gold);
+    background: rgba(230, 175, 85, 0.12);
 }
 
-
 .room-more {
-    width: 34px;
-    height: 34px;
-
-    border: 0;
-    background: transparent;
-
-    color: #77766f;
-
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--mel-border);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--mel-text-soft);
+    display: grid;
+    place-items: center;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.room-more:hover {
+    color: var(--mel-gold);
+    border-color: rgba(230, 175, 85, 0.3);
 }
 
 
 /* =========================================================
-   MAIN
+   MAIN CONTAINER
    ========================================================= */
 
 .room-main {
     width: 100%;
-    max-width: none;
-
     margin: 0;
-
-    /* IMPORTANT:
-       top gap intentionally very small */
-    padding: 16px 20px 22px;
-
+    padding: 24px 28px 32px;
     flex: 1;
 }
 
 
 /* =========================================================
-   NOW PLAYING
+   NOW PLAYING BANNER
    ========================================================= */
 
 .now-playing {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     position: relative;
-
-    padding: 16px 18px;
-
+    padding: 28px 24px;
     background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(217, 166, 83, 0.045),
-            transparent 45%
-        ),
-        rgba(12, 14, 15, 0.94);
-
+        radial-gradient(circle at 50% 30%, rgba(230, 175, 85, 0.07), transparent 60%),
+        var(--mel-panel);
     border: 1px solid var(--mel-border);
-
-    border-radius: 14px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
-
 
 .now-playing-label {
     display: flex;
     align-items: center;
-    gap: 8px;
-
-    color: #77756f;
-
-    font-size: 9px;
+    gap: 9px;
+    color: var(--mel-text-soft);
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.7px;
-
-    margin-bottom: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
 }
 
-
 .music-dot {
-    width: 5px;
-    height: 5px;
-
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-
     background: var(--mel-gold);
-
-    box-shadow:
-        0 0 9px rgba(217, 166, 83, 0.5);
+    box-shadow: 0 0 12px var(--mel-gold);
 }
 
 
 /* =========================================================
-   VINYL
+   VINYL RECORD
    ========================================================= */
 
 .album-large {
-    width: 175px;
-    height: 175px;
-
+    width: 190px;
+    height: 190px;
     border-radius: 50%;
-
     display: grid;
     place-items: center;
-
     background:
-        radial-gradient(
-            circle at 35% 30%,
-            #303234,
-            #151718 45%,
-            #080909 76%
-        );
-
-    border: 1px solid rgba(255, 255, 255, 0.07);
-
+        radial-gradient(circle at 35% 30%, #3a3d42, #181a1d 45%, #0a0b0d 78%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
-        0 25px 55px rgba(0, 0, 0, 0.55),
-        0 0 55px rgba(217, 166, 83, 0.055);
+        0 30px 60px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(230, 175, 85, 0.08);
+    position: relative;
+    animation: spinVinyl 20s linear infinite;
 }
 
+@keyframes spinVinyl {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .album-ring {
-    width: 138px;
-    height: 138px;
-
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-
-    border: 1px solid rgba(217, 166, 83, 0.13);
-
+    border: 1px solid rgba(230, 175, 85, 0.18);
     display: grid;
     place-items: center;
-
     position: relative;
 }
-
 
 .album-ring::before,
 .album-ring::after {
     content: "";
-
     position: absolute;
-
     border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .album-ring::before {
-    inset: 15px;
+    inset: 18px;
 }
 
 .album-ring::after {
-    inset: 33px;
+    inset: 38px;
 }
 
-
 .album-center {
-    width: 52px;
-    height: 52px;
-
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
-
     display: grid;
     place-items: center;
-
     color: var(--mel-gold);
-
-    background: #151718;
-
-    border: 1px solid rgba(217, 166, 83, 0.2);
-
+    background: #15171a;
+    border: 1px solid rgba(230, 175, 85, 0.3);
     z-index: 2;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -424,26 +391,21 @@
 
 .song-details {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 18px;
 }
 
 .song-details h1 {
     margin: 0;
-
-    font-size: 19px;
-    font-weight: 650;
-
-    letter-spacing: -0.5px;
-
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
     color: var(--mel-text);
 }
 
 .song-details p {
-    margin: 5px 0 0;
-
-    color: #77756f;
-
-    font-size: 11px;
+    margin: 6px 0 0;
+    color: var(--mel-text-soft);
+    font-size: 12px;
 }
 
 
@@ -453,78 +415,64 @@
 
 .song-actions {
     position: absolute;
-
-    right: 22px;
-    top: 215px;
-
+    right: 28px;
+    top: 28px;
     display: flex;
-    gap: 6px;
+    gap: 8px;
 }
 
 .song-actions button {
-    width: 32px;
-    height: 32px;
-
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-
     border: 1px solid var(--mel-border);
-
-    background: #151718;
-
-    color: #77756f;
-
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--mel-text-soft);
     display: grid;
     place-items: center;
-
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .song-actions button:hover {
     color: var(--mel-gold);
-
-    border-color:
-        rgba(217, 166, 83, 0.22);
+    border-color: rgba(230, 175, 85, 0.35);
+    background: rgba(230, 175, 85, 0.08);
 }
 
 
 /* =========================================================
-   PROGRESS
+   PROGRESS BAR
    ========================================================= */
 
 .progress-area {
-    width: min(470px, 88%);
-
-    margin-top: 20px;
+    width: min(520px, 90%);
+    margin-top: 24px;
 }
 
 .progress-bar {
-    height: 3px;
-
+    height: 5px;
     border-radius: 10px;
-
-    background: #292b2c;
-
+    background: rgba(255, 255, 255, 0.07);
     overflow: hidden;
+    cursor: pointer;
 }
 
 .progress-value {
     width: 42%;
     height: 100%;
-
-    background: var(--mel-gold);
-
+    background: linear-gradient(90deg, var(--mel-gold), var(--mel-gold-light));
     border-radius: inherit;
+    box-shadow: 0 0 12px var(--mel-gold-glow);
 }
 
 .time-row {
     display: flex;
     justify-content: space-between;
-
-    margin-top: 7px;
-
-    color: #62615c;
-
-    font-size: 9px;
+    margin-top: 8px;
+    color: var(--mel-muted);
+    font-size: 10px;
+    font-weight: 500;
 }
 
 
@@ -533,231 +481,170 @@
    ========================================================= */
 
 .main-controls {
-    margin-top: 13px;
-
+    margin-top: 18px;
     display: flex;
     align-items: center;
-
-    gap: 15px;
+    gap: 18px;
 }
 
-
 .control-small {
-    width: 35px;
-    height: 35px;
-
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-
     border: 1px solid var(--mel-border);
-
-    background: #151718;
-
-    color: #85837c;
-
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--mel-text-soft);
     display: grid;
     place-items: center;
-
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .control-small:hover {
     color: var(--mel-gold);
+    border-color: rgba(230, 175, 85, 0.3);
+    background: rgba(230, 175, 85, 0.06);
 }
 
-
 .control-play {
-    width: 48px;
-    height: 48px;
-
+    width: 54px;
+    height: 54px;
     border: 0;
     border-radius: 50%;
-
-    background: var(--mel-gold);
-
-    color: #14110b;
-
+    background: linear-gradient(135deg, var(--mel-gold-light), var(--mel-gold));
+    color: #0c0e10;
     display: grid;
     place-items: center;
-
     cursor: pointer;
-
-    box-shadow:
-        0 8px 25px rgba(217, 166, 83, 0.16);
+    box-shadow: 0 10px 30px var(--mel-gold-glow);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .control-play:hover {
-    background: var(--mel-gold-light);
-    transform: scale(1.04);
+    transform: scale(1.08);
+    box-shadow: 0 15px 35px rgba(230, 175, 85, 0.35);
 }
 
 
 /* =========================================================
    FOUR COLUMN LAYOUT
-   MUSIC | LIBRARY | CHAT | INFO
    ========================================================= */
 
 .room-panels {
     width: 100%;
-
     display: grid;
-
     grid-template-columns:
-        minmax(245px, 1.5fr)
-        minmax(140px, 0.7fr)
-        minmax(380px, 2.3fr)
-        minmax(175px, 0.5fr);
-
-    gap: 14px;
-
-    margin-top: 14px;
-
+        minmax(260px, 1.4fr) minmax(160px, 0.7fr) minmax(400px, 2.3fr) minmax(190px, 0.6fr);
+    gap: 18px;
+    margin-top: 20px;
     align-items: stretch;
 }
 
 
 /* =========================================================
-   PANELS
+   PANELS BASE
    ========================================================= */
 
 .room-panel {
     min-width: 0;
-    min-height: 245px;
-
-    border-radius: 14px;
-
+    min-height: 270px;
+    border-radius: 18px;
     background: var(--mel-panel);
-
     border: 1px solid var(--mel-border);
-
-    padding: 15px;
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.22);
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    padding: 20px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
-
 
 .panel-header {
     display: flex;
-
     align-items: flex-start;
-
     justify-content: space-between;
-
-    color: #6d6b65;
+    color: var(--mel-muted);
 }
 
 .panel-header h2 {
     margin: 0;
-
-    color: #e1ddd5;
-
-    font-size: 13px;
-
-    font-weight: 650;
+    color: var(--mel-text);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
 }
 
 .panel-header p {
-    margin: 4px 0 0;
-
-    color: #6c6a64;
-
-    font-size: 9px;
+    margin: 5px 0 0;
+    color: var(--mel-muted);
+    font-size: 10px;
 }
 
 
 /* =========================================================
-   MUSIC LIBRARY — COMPACT
+   MUSIC LIBRARY
    ========================================================= */
 
 .library-panel {
     min-width: 0;
-
     overflow: hidden;
 }
 
 .library-panel .panel-header {
-    padding-bottom: 4px;
+    padding-bottom: 8px;
 }
 
-
 .upload-song-btn {
-    border:
-        1px solid rgba(217, 166, 83, 0.24);
-
-    background:
-        rgba(217, 166, 83, 0.09);
-
+    border: 1px solid rgba(230, 175, 85, 0.28);
+    background: rgba(230, 175, 85, 0.08);
     color: var(--mel-gold-light);
-
-    border-radius: 8px;
-
-    padding: 6px 8px;
-
+    border-radius: 9px;
+    padding: 7px 11px;
     display: flex;
-
     align-items: center;
-
-    gap: 5px;
-
+    gap: 6px;
     cursor: pointer;
-
-    font-size: 9px;
-
+    font-size: 10px;
     font-weight: 700;
+    transition: 0.2s;
 }
 
 .upload-song-btn:hover {
-    background:
-        rgba(217, 166, 83, 0.15);
+    background: rgba(230, 175, 85, 0.16);
+    box-shadow: 0 0 12px rgba(230, 175, 85, 0.15);
 }
 
 .upload-song-btn:disabled {
     opacity: 0.55;
-
     cursor: wait;
 }
 
-
 .song-library {
-    max-height: 260px;
-
+    max-height: 300px;
     overflow: auto;
-
-    padding: 4px 1px;
+    padding: 6px 2px;
 }
-
 
 .library-song {
     width: 100%;
-
     border: 0;
-
     background: transparent;
-
     color: var(--mel-text);
-
     display: flex;
-
     align-items: center;
-
-    gap: 7px;
-
+    gap: 10px;
     text-align: left;
-
-    padding: 6px;
-
-    border-radius: 8px;
-
+    padding: 9px 8px;
+    border-radius: 10px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .library-song:hover:not(:disabled),
 .library-song.active {
-    background:
-        rgba(217, 166, 83, 0.075);
+    background: rgba(230, 175, 85, 0.09);
+}
+
+.library-song.active {
+    border-left: 3px solid var(--mel-gold);
 }
 
 .library-song:disabled {
@@ -765,7 +652,7 @@
     opacity: 0.78;
 }
 
-.library-song > div:nth-child(2) {
+.library-song>div:nth-child(2) {
     flex: 1;
     min-width: 0;
 }
@@ -773,162 +660,113 @@
 .library-song strong,
 .library-song span {
     display: block;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
-
     white-space: nowrap;
 }
 
 .library-song strong {
-    font-size: 10px;
-
-    color: #dedad2;
+    font-size: 11px;
+    color: var(--mel-text);
+    font-weight: 600;
 }
 
 .library-song span {
-    font-size: 8.5px;
-
-    color: #77756f;
-
-    margin-top: 2px;
+    font-size: 9.5px;
+    color: var(--mel-text-soft);
+    margin-top: 3px;
 }
-
 
 .library-icon {
-    width: 28px;
-    height: 28px;
-
-    border-radius: 7px;
-
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
     display: grid;
     place-items: center;
-
-    background: #17191a;
-
+    background: rgba(255, 255, 255, 0.04);
     color: var(--mel-gold);
-
     flex: none;
+    border: 1px solid var(--mel-border);
 }
 
-
 .empty-library {
-    padding: 20px 8px;
-
-    color: #77756f;
-
-    font-size: 10px;
-
-    line-height: 1.5;
-
+    padding: 24px 12px;
+    color: var(--mel-muted);
+    font-size: 11px;
+    line-height: 1.6;
     text-align: center;
 }
 
 
 /* =========================================================
-   CHAT — BIGGEST PANEL
+   CHAT PANEL
    ========================================================= */
 
 .chat-panel {
     min-width: 0;
-
-    min-height: 470px;
-
+    min-height: 500px;
     display: flex;
-
     flex-direction: column;
 }
-
 
 .chat-messages {
-    height: 350px;
-
-    margin-top: 14px;
-
+    height: 380px;
+    margin-top: 16px;
     display: flex;
-
     flex-direction: column;
-
-    gap: 7px;
-
+    gap: 10px;
     overflow-y: auto;
-
-    padding-right: 4px;
+    padding-right: 6px;
 }
-
 
 .chat-message {
     display: flex;
-
     align-items: flex-start;
-
-    gap: 9px;
-
-    padding: 9px 10px;
-
-    border-radius: 10px;
-
-    background:
-        rgba(25, 27, 28, 0.72);
-
-    border:
-        1px solid rgba(255, 255, 255, 0.035);
+    gap: 11px;
+    padding: 11px 13px;
+    border-radius: 12px;
+    background: rgba(25, 28, 33, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.045);
+    transition: 0.2s;
 }
 
 .chat-message:hover {
-    background:
-        rgba(31, 33, 34, 0.82);
+    background: rgba(33, 37, 43, 0.88);
+    border-color: rgba(255, 255, 255, 0.07);
 }
-
 
 .chat-avatar {
-    width: 29px;
-    height: 29px;
-
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
-
     display: grid;
-
     place-items: center;
-
     border-radius: 50%;
-
-    font-size: 8px;
-
+    font-size: 9px;
     font-weight: 700;
-
-    color: #e6e1d8;
-
-    background: #252829;
+    color: var(--mel-text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--mel-border);
 }
-
 
 .host-avatar {
-    background:
-        rgba(217, 166, 83, 0.15);
-
+    background: rgba(230, 175, 85, 0.16);
     color: var(--mel-gold-light);
+    border-color: rgba(230, 175, 85, 0.3);
 }
-
 
 .chat-message strong {
     display: block;
-
-    color: #ddd9d1;
-
-    font-size: 10px;
+    color: var(--mel-text);
+    font-size: 11px;
+    font-weight: 600;
 }
 
-
 .chat-message p {
-    margin: 3px 0 0;
-
-    color: #a29f98;
-
-    font-size: 10px;
-
-    line-height: 1.45;
+    margin: 4px 0 0;
+    color: var(--mel-text-soft);
+    font-size: 11px;
+    line-height: 1.5;
 }
 
 
@@ -937,71 +775,48 @@
    ========================================================= */
 
 .chat-input {
-    height: 40px;
-
-    margin-top: 10px;
-
+    height: 44px;
+    margin-top: 12px;
     display: flex;
-
     align-items: center;
-
-    gap: 7px;
-
-    padding:
-        0 6px 0 12px;
-
-    border-radius: 10px;
-
-    background: #151718;
-
+    gap: 9px;
+    padding: 0 8px 0 14px;
+    border-radius: 12px;
+    background: rgba(20, 22, 26, 0.9);
     border: 1px solid var(--mel-border);
-
     flex-shrink: 0;
 }
 
-
 .chat-input input {
     flex: 1;
-
     min-width: 0;
-
     border: 0;
-
     outline: none;
-
     background: transparent;
-
-    color: #ddd9d1;
-
-    font-size: 10px;
+    color: var(--mel-text);
+    font-size: 11px;
 }
 
 .chat-input input::placeholder {
-    color: #5f5d58;
+    color: var(--mel-muted);
 }
 
-
 .chat-input button {
-    width: 29px;
-    height: 29px;
-
+    width: 32px;
+    height: 32px;
     border: 0;
-
-    border-radius: 8px;
-
+    border-radius: 9px;
     background: var(--mel-gold);
-
-    color: #14110b;
-
+    color: #0c0e10;
     display: grid;
-
     place-items: center;
-
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .chat-input button:hover {
     background: var(--mel-gold-light);
+    box-shadow: 0 0 10px var(--mel-gold-glow);
 }
 
 
@@ -1010,117 +825,82 @@
    ========================================================= */
 
 .people-list {
-    margin-top: 14px;
-
+    margin-top: 16px;
     display: flex;
-
     flex-direction: column;
-
-    gap: 8px;
-
+    gap: 10px;
     background: transparent;
-
     border: 0;
-
     box-shadow: none;
 }
 
-
 .person {
     display: flex;
-
     align-items: center;
-
-    gap: 8px;
-
-    padding: 6px;
-
-    border-radius: 9px;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 11px;
+    transition: 0.2s;
 }
 
 .person:hover {
-    background:
-        rgba(255, 255, 255, 0.035);
+    background: rgba(255, 255, 255, 0.04);
 }
-
 
 .person-avatar {
-    width: 29px;
-    height: 29px;
-
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
-
     display: grid;
-
     place-items: center;
-
     border-radius: 50%;
-
-    font-size: 8px;
-
+    font-size: 9px;
     font-weight: 700;
-
-    color: #ddd8cf;
-
-    background: #252829;
+    color: var(--mel-text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--mel-border);
 }
-
 
 .person-info {
     display: flex;
-
     flex-direction: column;
-
     flex: 1;
-
     min-width: 0;
 }
 
 .person-info strong {
-    color: #d7d3cb;
-
-    font-size: 9px;
-
+    color: var(--mel-text);
+    font-size: 10px;
+    font-weight: 600;
     overflow: hidden;
-
     text-overflow: ellipsis;
-
     white-space: nowrap;
 }
 
 .person-info span {
-    margin-top: 2px;
-
-    color: #696761;
-
-    font-size: 8px;
+    margin-top: 3px;
+    color: var(--mel-muted);
+    font-size: 8.5px;
 }
-
 
 .person-playing {
     display: flex;
-
     align-items: center;
-
-    gap: 4px;
-
-    color: #68665f;
-
-    font-size: 8px;
+    gap: 5px;
+    color: var(--mel-muted);
+    font-size: 9px;
 }
 
 .person-playing span {
     width: 5px;
     height: 5px;
-
     border-radius: 50%;
-
     background: var(--mel-online);
 }
 
 
 /* =========================================================
-   RANGE
+   RANGE / AUDIO ERROR
    ========================================================= */
 
 input[type="range"],
@@ -1128,19 +908,15 @@ input[type="range"],
     accent-color: var(--mel-gold);
 }
 
-
-/* =========================================================
-   AUDIO ERROR
-   ========================================================= */
-
 .audio-error {
-    margin-top: 9px;
-
-    color: #d8b476;
-
-    font-size: 10px;
-
+    margin-top: 12px;
+    color: var(--mel-gold-light);
+    font-size: 11px;
     text-align: center;
+    background: rgba(230, 175, 85, 0.08);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(230, 175, 85, 0.2);
 }
 
 
@@ -1150,15 +926,12 @@ input[type="range"],
 
 .room-page * {
     scrollbar-width: thin;
-
-    scrollbar-color:
-        rgba(217, 166, 83, 0.28)
-        transparent;
+    scrollbar-color: rgba(230, 175, 85, 0.3) transparent;
 }
 
 .room-page *::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
 }
 
 .room-page *::-webkit-scrollbar-track {
@@ -1166,15 +939,12 @@ input[type="range"],
 }
 
 .room-page *::-webkit-scrollbar-thumb {
-    background:
-        rgba(217, 166, 83, 0.27);
-
-    border-radius: 10px;
+    background: rgba(230, 175, 85, 0.28);
+    border-radius: 12px;
 }
 
 .room-page *::-webkit-scrollbar-thumb:hover {
-    background:
-        rgba(217, 166, 83, 0.42);
+    background: rgba(230, 175, 85, 0.45);
 }
 
 
@@ -1183,51 +953,37 @@ input[type="range"],
    ========================================================= */
 
 .room-footer {
-    height: 48px;
-
-    padding: 0 26px;
-
-    border-top:
-        1px solid var(--mel-border-soft);
-
+    height: 52px;
+    padding: 0 32px;
+    border-top: 1px solid var(--mel-border-soft);
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
-    color: #55544f;
-
-    font-size: 8px;
+    color: var(--mel-muted);
+    font-size: 9px;
+    background: rgba(7, 8, 10, 0.6);
 }
 
-.room-footer > div {
+.room-footer>div {
     display: flex;
-
     align-items: center;
-
-    gap: 6px;
+    gap: 8px;
 }
 
 .secure-dot {
-    width: 5px;
-    height: 5px;
-
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-
     background: var(--mel-online);
 }
 
 .room-footer button {
     border: 0;
-
     background: transparent;
-
-    color: #77756f;
-
-    font-size: 8px;
-
+    color: var(--mel-text-soft);
+    font-size: 9px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .room-footer button:hover {
@@ -1236,30 +992,19 @@ input[type="range"],
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS
    ========================================================= */
 
 @media (max-width: 1200px) {
-
     .room-panels {
         grid-template-columns:
-            minmax(220px, 1.35fr)
-            minmax(135px, .7fr)
-            minmax(320px, 2fr)
-            minmax(170px, .7fr);
-    }
-
-    .room-main {
-        padding-left: 14px;
-        padding-right: 14px;
+            minmax(240px, 1.3fr) minmax(150px, 0.7fr) minmax(340px, 2fr) minmax(180px, 0.7fr);
     }
 }
 
-
 @media (max-width: 900px) {
-
     .room-header {
-        padding: 0 18px;
+        padding: 0 20px;
     }
 
     .room-panels {
@@ -1267,20 +1012,18 @@ input[type="range"],
     }
 
     .chat-panel {
-        min-height: 420px;
+        min-height: 440px;
     }
 
     .chat-messages {
-        height: 300px;
+        height: 320px;
     }
 }
 
-
 @media (max-width: 600px) {
-
     .room-header {
-        height: 66px;
-        padding: 0 14px;
+        height: 68px;
+        padding: 0 16px;
     }
 
     .room-brand-sub,
@@ -1293,7 +1036,7 @@ input[type="range"],
     }
 
     .room-code-pill {
-        padding-left: 9px;
+        padding-left: 10px;
     }
 
     .room-more {
@@ -1301,17 +1044,17 @@ input[type="range"],
     }
 
     .room-main {
-        padding: 12px 10px 18px;
+        padding: 16px 12px 24px;
     }
 
     .album-large {
-        width: 160px;
-        height: 160px;
+        width: 165px;
+        height: 165px;
     }
 
     .album-ring {
-        width: 125px;
-        height: 125px;
+        width: 130px;
+        height: 130px;
     }
 
     .song-details h1 {
@@ -1320,14 +1063,14 @@ input[type="range"],
 
     .song-actions {
         position: static;
-        margin-top: 10px;
+        margin-top: 14px;
     }
 
     .progress-area {
-        width: 92%;
+        width: 94%;
     }
 
     .room-footer {
-        padding: 0 14px;
+        padding: 0 16px;
     }
 }
