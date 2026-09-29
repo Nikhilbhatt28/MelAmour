@@ -1,0 +1,10 @@
+com\melamour\backend\entity\Room.class
+com\melamour\backend\controller\RoomController.class
+com\melamour\backend\dto\CreateRoomRequest.class
+com\melamour\backend\dto\RoomResponse.class
+com\melamour\backend\service\RoomService.class
+com\melamour\backend\repository\RoomRepository.class
+com\melamour\backend\MelamourApplication.class
+com\melamour\backend\config\CorsConfig$1.class
+com\melamour\backend\dto\JoinRoomRequest.class
+com\melamour\backend\config\CorsConfig.class
