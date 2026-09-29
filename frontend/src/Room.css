@@ -1058,368 +1058,371 @@ input[type="range"],
    ========================================================= */
 
 .room-page {
-  isolation: isolate;
-  background:
-    radial-gradient(circle at 50% -10%, rgba(216, 137, 63, 0.10), transparent 42%),
-    linear-gradient(180deg, #0b0b09 0%, #11100d 48%, #090907 100%);
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% -10%, rgba(216, 137, 63, 0.10), transparent 42%),
+        linear-gradient(180deg, #0b0b09 0%, #11100d 48%, #090907 100%);
 }
 
 .room-page::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(10, 10, 8, 0.60), rgba(10, 10, 8, 0.90)),
-    url("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=2200&q=82")
-      center / cover no-repeat;
-  opacity: 0.22;
-  transform: scale(1.03);
-  animation: roomBackdropPulse 24s ease-in-out infinite alternate;
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 8, 0.60), rgba(10, 10, 8, 0.90)),
+        url("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=2200&q=82") center / cover no-repeat;
+    opacity: 0.22;
+    transform: scale(1.03);
+    animation: roomBackdropPulse 24s ease-in-out infinite alternate;
 }
 
 @keyframes roomBackdropPulse {
-  from { transform: scale(1.03); opacity: 0.18; }
-  to   { transform: scale(1.08); opacity: 0.25; }
+    from {
+        transform: scale(1.03);
+        opacity: 0.18;
+    }
+
+    to {
+        transform: scale(1.08);
+        opacity: 0.25;
+    }
 }
 
-.room-page > * {
-  position: relative;
-  z-index: 2;
+.room-page>* {
+    position: relative;
+    z-index: 2;
 }
 
 .room-header {
-  height: 76px;
-  padding-inline: clamp(18px, 3vw, 42px);
-  background: rgba(11, 11, 9, 0.78);
-  border-bottom-color: rgba(243, 199, 143, 0.12);
+    height: 76px;
+    padding-inline: clamp(18px, 3vw, 42px);
+    background: rgba(11, 11, 9, 0.78);
+    border-bottom-color: rgba(243, 199, 143, 0.12);
 }
 
 .room-brand-icon {
-  border-radius: 4px;
-  background: rgba(216, 137, 63, 0.10);
-  border-color: rgba(216, 137, 63, 0.25);
+    border-radius: 4px;
+    background: rgba(216, 137, 63, 0.10);
+    border-color: rgba(216, 137, 63, 0.25);
 }
 
 .room-back,
 .room-more {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
 .room-code-pill {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
 .room-main {
-  width: min(1560px, calc(100% - 48px));
-  margin-inline: auto;
-  padding: 24px 0 34px;
+    width: min(1560px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 24px 0 34px;
 }
 
 /* --- Main player: one visual axis --- */
 .now-playing {
-  width: min(920px, 100%);
-  margin-inline: auto;
-  padding: 30px clamp(22px, 4vw, 52px) 28px;
-  border-radius: 5px;
-  background:
-    linear-gradient(180deg, rgba(26, 24, 19, 0.92), rgba(16, 15, 12, 0.94));
-  border-color: rgba(243, 199, 143, 0.16);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+    width: min(920px, 100%);
+    margin-inline: auto;
+    padding: 30px clamp(22px, 4vw, 52px) 28px;
+    border-radius: 5px;
+    background:
+        linear-gradient(180deg, rgba(26, 24, 19, 0.92), rgba(16, 15, 12, 0.94));
+    border-color: rgba(243, 199, 143, 0.16);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
 }
 
 .now-playing-label {
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 20px;
-  letter-spacing: 0.24em;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+    letter-spacing: 0.24em;
 }
 
 .music-dot {
-  background: var(--mel-ember);
-  box-shadow: 0 0 12px var(--mel-ember);
+    background: var(--mel-ember);
+    box-shadow: 0 0 12px var(--mel-ember);
 }
 
 .album-large {
-  width: clamp(150px, 18vw, 190px);
-  height: clamp(150px, 18vw, 190px);
-  box-shadow:
-    0 28px 65px rgba(0, 0, 0, 0.62),
-    0 0 60px rgba(216, 137, 63, 0.10);
+    width: clamp(150px, 18vw, 190px);
+    height: clamp(150px, 18vw, 190px);
+    box-shadow:
+        0 28px 65px rgba(0, 0, 0, 0.62),
+        0 0 60px rgba(216, 137, 63, 0.10);
 }
 
 .album-ring {
-  width: 78%;
-  height: 78%;
-  border-color: rgba(243, 199, 143, 0.20);
+    width: 78%;
+    height: 78%;
+    border-color: rgba(243, 199, 143, 0.20);
 }
 
 .album-center {
-  width: 31%;
-  height: 31%;
-  color: var(--mel-ember-light);
-  border-color: rgba(216, 137, 63, 0.35);
+    width: 31%;
+    height: 31%;
+    color: var(--mel-ember-light);
+    border-color: rgba(216, 137, 63, 0.35);
 }
 
 /* Absolutely centered song information */
 .song-details {
-  width: 100%;
-  margin-top: 18px;
-  text-align: center;
+    width: 100%;
+    margin-top: 18px;
+    text-align: center;
 }
 
 .song-details h1 {
-  font-family: "Outfit", sans-serif;
-  font-size: clamp(20px, 2vw, 25px);
-  letter-spacing: -0.02em;
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(20px, 2vw, 25px);
+    letter-spacing: -0.02em;
 }
 
 .song-details p {
-  color: #aaa397;
+    color: #aaa397;
 }
 
 /* Timeline gets its own centered axis — no drifting */
 .progress-area {
-  width: min(660px, 100%);
-  margin: 24px auto 0;
-  align-self: center;
+    width: min(660px, 100%);
+    margin: 24px auto 0;
+    align-self: center;
 }
 
 .progress-bar {
-  width: 100%;
-  height: 4px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.10);
+    width: 100%;
+    height: 4px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.10);
 }
 
 .progress-value {
-  background: linear-gradient(90deg, #a85f24, #d8893f 55%, #f3c78f);
-  box-shadow: 0 0 14px rgba(216, 137, 63, 0.25);
+    background: linear-gradient(90deg, #a85f24, #d8893f 55%, #f3c78f);
+    box-shadow: 0 0 14px rgba(216, 137, 63, 0.25);
 }
 
 .time-row {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  margin-top: 8px;
-  color: #807b70;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-top: 8px;
+    color: #807b70;
 }
 
 .time-row span:last-child {
-  text-align: right;
+    text-align: right;
 }
 
 .main-controls {
-  justify-content: center;
-  width: 100%;
-  margin-top: 18px;
-  gap: 18px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 18px;
+    gap: 18px;
 }
 
 .control-small {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
 .control-play {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #d8893f;
-  color: #11100d;
-  box-shadow: 0 12px 30px rgba(216, 137, 63, 0.24);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #d8893f;
+    color: #11100d;
+    box-shadow: 0 12px 30px rgba(216, 137, 63, 0.24);
 }
 
 .control-play:hover {
-  background: #f0ad62;
+    background: #f0ad62;
 }
 
 /* --- Symmetrical content grid --- */
 .room-panels {
-  grid-template-columns:
-    minmax(250px, 1.15fr)
-    minmax(170px, 0.72fr)
-    minmax(380px, 2.15fr)
-    minmax(210px, 0.78fr);
-  gap: 16px;
-  margin-top: 18px;
-  align-items: stretch;
+    grid-template-columns:
+        minmax(250px, 1.15fr) minmax(170px, 0.72fr) minmax(380px, 2.15fr) minmax(210px, 0.78fr);
+    gap: 16px;
+    margin-top: 18px;
+    align-items: stretch;
 }
 
 .room-panel {
-  border-radius: 5px;
-  background: rgba(18, 17, 14, 0.88);
-  border-color: rgba(243, 199, 143, 0.11);
-  padding: 20px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    border-radius: 5px;
+    background: rgba(18, 17, 14, 0.88);
+    border-color: rgba(243, 199, 143, 0.11);
+    padding: 20px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
 }
 
 .panel-header {
-  min-height: 38px;
-  align-items: center;
+    min-height: 38px;
+    align-items: center;
 }
 
 .panel-header h2 {
-  font-family: "Outfit", sans-serif;
-  letter-spacing: 0.01em;
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 0.01em;
 }
 
 .upload-song-btn {
-  border-radius: 3px;
-  background: rgba(216, 137, 63, 0.10);
-  border-color: rgba(216, 137, 63, 0.28);
-  color: var(--mel-ember-light);
+    border-radius: 3px;
+    background: rgba(216, 137, 63, 0.10);
+    border-color: rgba(216, 137, 63, 0.28);
+    color: var(--mel-ember-light);
 }
 
 /* Library */
 .library-song {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
 .library-song:hover:not(:disabled),
 .library-song.active {
-  background: rgba(216, 137, 63, 0.08);
+    background: rgba(216, 137, 63, 0.08);
 }
 
 .library-song.active {
-  border-left-color: var(--mel-ember);
+    border-left-color: var(--mel-ember);
 }
 
 .library-icon {
-  border-radius: 4px;
-  color: var(--mel-ember);
+    border-radius: 4px;
+    color: var(--mel-ember);
 }
 
 /* Chat — dominant panel, clean message rhythm */
 .chat-panel {
-  min-height: 520px;
+    min-height: 520px;
 }
 
 .chat-messages {
-  flex: 1;
-  height: auto;
-  min-height: 380px;
-  margin-top: 16px;
-  gap: 9px;
+    flex: 1;
+    height: auto;
+    min-height: 380px;
+    margin-top: 16px;
+    gap: 9px;
 }
 
 .chat-message {
-  border-radius: 4px;
-  background: rgba(29, 27, 22, 0.74);
+    border-radius: 4px;
+    background: rgba(29, 27, 22, 0.74);
 }
 
 .chat-message:hover {
-  border-color: rgba(216, 137, 63, 0.16);
+    border-color: rgba(216, 137, 63, 0.16);
 }
 
 .host-avatar {
-  background: rgba(216, 137, 63, 0.16);
-  color: var(--mel-ember-light);
-  border-color: rgba(216, 137, 63, 0.28);
+    background: rgba(216, 137, 63, 0.16);
+    color: var(--mel-ember-light);
+    border-color: rgba(216, 137, 63, 0.28);
 }
 
 .chat-input {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
 .chat-input button {
-  border-radius: 3px;
-  background: #d8893f;
-  color: #11100d;
+    border-radius: 3px;
+    background: #d8893f;
+    color: #11100d;
 }
 
 .chat-input button:hover {
-  box-shadow: 0 0 18px rgba(216, 137, 63, 0.25);
+    box-shadow: 0 0 18px rgba(216, 137, 63, 0.25);
 }
 
 /* People */
 .person {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
 .person-playing {
-  color: #8d887d;
+    color: #8d887d;
 }
 
 .person-playing span {
-  background: var(--mel-ember);
+    background: var(--mel-ember);
 }
 
 /* Range + errors */
 input[type="range"],
 .song-range {
-  accent-color: var(--mel-ember);
+    accent-color: var(--mel-ember);
 }
 
 .audio-error {
-  color: var(--mel-ember-light);
-  background: rgba(216, 137, 63, 0.07);
-  border-color: rgba(216, 137, 63, 0.20);
+    color: var(--mel-ember-light);
+    background: rgba(216, 137, 63, 0.07);
+    border-color: rgba(216, 137, 63, 0.20);
 }
 
 /* Scrollbar */
 .room-page * {
-  scrollbar-color: rgba(216, 137, 63, 0.35) transparent;
+    scrollbar-color: rgba(216, 137, 63, 0.35) transparent;
 }
 
 .room-page *::-webkit-scrollbar-thumb {
-  background: rgba(216, 137, 63, 0.28);
+    background: rgba(216, 137, 63, 0.28);
 }
 
 .room-page *::-webkit-scrollbar-thumb:hover {
-  background: rgba(216, 137, 63, 0.50);
+    background: rgba(216, 137, 63, 0.50);
 }
 
 @media (max-width: 1200px) {
-  .room-panels {
-    grid-template-columns: 1.05fr 0.75fr 1.8fr;
-  }
+    .room-panels {
+        grid-template-columns: 1.05fr 0.75fr 1.8fr;
+    }
 
-  .people-panel {
-    grid-column: 1 / -1;
-  }
+    .people-panel {
+        grid-column: 1 / -1;
+    }
 }
 
 @media (max-width: 900px) {
-  .room-main {
-    width: min(100% - 28px, 720px);
-  }
+    .room-main {
+        width: min(100% - 28px, 720px);
+    }
 
-  .room-panels {
-    grid-template-columns: 1fr;
-  }
+    .room-panels {
+        grid-template-columns: 1fr;
+    }
 
-  .people-panel {
-    grid-column: auto;
-  }
+    .people-panel {
+        grid-column: auto;
+    }
 
-  .now-playing {
-    padding-inline: 20px;
-  }
+    .now-playing {
+        padding-inline: 20px;
+    }
 }
 
 @media (max-width: 560px) {
-  .room-header {
-    padding-inline: 14px;
-  }
+    .room-header {
+        padding-inline: 14px;
+    }
 
-  .room-header-right .live-status {
-    display: none;
-  }
+    .room-header-right .live-status {
+        display: none;
+    }
 
-  .room-main {
-    width: calc(100% - 20px);
-    padding-top: 12px;
-  }
+    .room-main {
+        width: calc(100% - 20px);
+        padding-top: 12px;
+    }
 
-  .now-playing {
-    padding: 22px 14px;
-  }
+    .now-playing {
+        padding: 22px 14px;
+    }
 
-  .progress-area {
-    width: 100%;
-  }
+    .progress-area {
+        width: 100%;
+    }
 }
 
 
@@ -1430,290 +1433,287 @@ input[type="range"],
    ========================================================= */
 
 .room-page {
-  --mel-bg: #0b0c0b;
-  --mel-panel: rgba(12, 14, 13, 0.76);
-  --mel-panel-soft: rgba(19, 21, 19, 0.72);
+    --mel-bg: #0b0c0b;
+    --mel-panel: rgba(12, 14, 13, 0.76);
+    --mel-panel-soft: rgba(19, 21, 19, 0.72);
 
-  --mel-border: rgba(242, 238, 230, 0.10);
-  --mel-border-soft: rgba(242, 238, 230, 0.055);
+    --mel-border: rgba(242, 238, 230, 0.10);
+    --mel-border-soft: rgba(242, 238, 230, 0.055);
 
-  --mel-ember: #c56f48;
-  --mel-ember-light: #e3a078;
-  --mel-ember-glow: rgba(197, 111, 72, 0.20);
+    --mel-ember: #c56f48;
+    --mel-ember-light: #e3a078;
+    --mel-ember-glow: rgba(197, 111, 72, 0.20);
 
-  --mel-text: #f2eee6;
-  --mel-text-soft: #aaa69d;
-  --mel-muted: #77746d;
+    --mel-text: #f2eee6;
+    --mel-text-soft: #aaa69d;
+    --mel-muted: #77746d;
 
-  font-family: "Manrope", sans-serif;
+    font-family: "Manrope", sans-serif;
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(6, 7, 6, 0.88),
-      rgba(8, 9, 8, 0.64) 48%,
-      rgba(8, 9, 8, 0.82)
-    ),
-    url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=90")
-      center / cover fixed no-repeat;
+    background:
+        linear-gradient(90deg,
+            rgba(6, 7, 6, 0.88),
+            rgba(8, 9, 8, 0.64) 48%,
+            rgba(8, 9, 8, 0.82)),
+        url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=90") center / cover fixed no-repeat;
 }
 
 /* large guitar / studio photograph behind the room */
 .room-page::after {
-  content: "";
-  position: fixed;
-  inset: -4%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(5, 6, 5, 0.44),
-      rgba(5, 6, 5, 0.88)
-    ),
-    url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=90")
-      center / cover no-repeat;
-  opacity: 0.48;
-  filter: saturate(0.70) contrast(1.04);
-  transform: scale(1.03);
-  animation: roomGuitarZoom 28s ease-in-out infinite alternate;
+    content: "";
+    position: fixed;
+    inset: -4%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg,
+            rgba(5, 6, 5, 0.44),
+            rgba(5, 6, 5, 0.88)),
+        url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=90") center / cover no-repeat;
+    opacity: 0.48;
+    filter: saturate(0.70) contrast(1.04);
+    transform: scale(1.03);
+    animation: roomGuitarZoom 28s ease-in-out infinite alternate;
 }
 
 @keyframes roomGuitarZoom {
-  from { transform: scale(1.03); }
-  to   { transform: scale(1.09); }
+    from {
+        transform: scale(1.03);
+    }
+
+    to {
+        transform: scale(1.09);
+    }
 }
 
 .room-page::before {
-  color: rgba(227, 160, 120, 0.025);
+    color: rgba(227, 160, 120, 0.025);
 }
 
 /* header */
 .room-header {
-  height: 74px;
-  background: rgba(8, 9, 8, 0.68);
-  border-bottom-color: rgba(242, 238, 230, 0.09);
+    height: 74px;
+    background: rgba(8, 9, 8, 0.68);
+    border-bottom-color: rgba(242, 238, 230, 0.09);
 }
 
 .room-brand-name {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 23px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .room-brand-sub {
-  color: #77746d;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+    color: #77746d;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .room-back,
 .room-more,
 .room-code-pill {
-  border-radius: 2px;
-  background: rgba(8, 9, 8, 0.40);
+    border-radius: 2px;
+    background: rgba(8, 9, 8, 0.40);
 }
 
 .room-brand-icon {
-  border-radius: 2px;
-  background: rgba(197, 111, 72, 0.10);
-  border-color: rgba(227, 160, 120, 0.20);
-  color: var(--mel-ember-light);
-  box-shadow: none;
+    border-radius: 2px;
+    background: rgba(197, 111, 72, 0.10);
+    border-color: rgba(227, 160, 120, 0.20);
+    color: var(--mel-ember-light);
+    box-shadow: none;
 }
 
 /* centered cinematic player */
 .now-playing {
-  width: min(940px, 100%);
-  margin-inline: auto;
-  border-radius: 2px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(16, 17, 15, 0.82),
-      rgba(9, 10, 9, 0.88)
-    );
-  border-color: rgba(242, 238, 230, 0.12);
-  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.48);
+    width: min(940px, 100%);
+    margin-inline: auto;
+    border-radius: 2px;
+    background:
+        linear-gradient(180deg,
+            rgba(16, 17, 15, 0.82),
+            rgba(9, 10, 9, 0.88));
+    border-color: rgba(242, 238, 230, 0.12);
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.48);
 }
 
 .now-playing-label {
-  font-size: 9px;
-  letter-spacing: 0.30em;
-  text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
 }
 
 .music-dot {
-  background: var(--mel-ember);
-  box-shadow: 0 0 10px rgba(197, 111, 72, 0.5);
+    background: var(--mel-ember);
+    box-shadow: 0 0 10px rgba(197, 111, 72, 0.5);
 }
 
 .album-large {
-  background:
-    radial-gradient(circle at 35% 30%, #40372d, #191814 48%, #080908 80%);
-  box-shadow:
-    0 28px 70px rgba(0, 0, 0, 0.65),
-    0 0 55px rgba(197, 111, 72, 0.08);
+    background:
+        radial-gradient(circle at 35% 30%, #40372d, #191814 48%, #080908 80%);
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.65),
+        0 0 55px rgba(197, 111, 72, 0.08);
 }
 
 .album-ring {
-  border-color: rgba(227, 160, 120, 0.16);
+    border-color: rgba(227, 160, 120, 0.16);
 }
 
 .album-center {
-  color: var(--mel-ember-light);
-  border-color: rgba(197, 111, 72, 0.30);
+    color: var(--mel-ember-light);
+    border-color: rgba(197, 111, 72, 0.30);
 }
 
 .song-details h1 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 30px;
-  font-weight: 600;
-  letter-spacing: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0;
 }
 
 .song-details p {
-  color: #99958c;
+    color: #99958c;
 }
 
 /* timeline — single centered visual axis */
 .progress-area {
-  width: min(680px, calc(100% - 28px));
-  margin: 25px auto 0;
+    width: min(680px, calc(100% - 28px));
+    margin: 25px auto 0;
 }
 
 .progress-bar {
-  height: 3px;
-  background: rgba(242, 238, 230, 0.12);
+    height: 3px;
+    background: rgba(242, 238, 230, 0.12);
 }
 
 .progress-value {
-  background: linear-gradient(90deg, #88442e, #c56f48, #e3a078);
-  box-shadow: 0 0 10px rgba(197, 111, 72, 0.18);
+    background: linear-gradient(90deg, #88442e, #c56f48, #e3a078);
+    box-shadow: 0 0 10px rgba(197, 111, 72, 0.18);
 }
 
 .time-row {
-  color: #77746d;
-  font-variant-numeric: tabular-nums;
+    color: #77746d;
+    font-variant-numeric: tabular-nums;
 }
 
 .main-controls {
-  justify-content: center;
+    justify-content: center;
 }
 
 .control-small {
-  border-radius: 2px;
+    border-radius: 2px;
 }
 
 .control-play {
-  background: var(--mel-ember);
-  box-shadow: 0 12px 32px rgba(197, 111, 72, 0.20);
+    background: var(--mel-ember);
+    box-shadow: 0 12px 32px rgba(197, 111, 72, 0.20);
 }
 
 .control-play:hover {
-  background: var(--mel-ember-light);
+    background: var(--mel-ember-light);
 }
 
 /* content panels */
 .room-panels {
-  gap: 14px;
+    gap: 14px;
 }
 
 .room-panel {
-  border-radius: 2px;
-  background: rgba(12, 14, 13, 0.76);
-  border-color: rgba(242, 238, 230, 0.09);
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.30);
+    border-radius: 2px;
+    background: rgba(12, 14, 13, 0.76);
+    border-color: rgba(242, 238, 230, 0.09);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.30);
 }
 
 .panel-header h2 {
-  font-family: "Manrope", sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .upload-song-btn,
 .chat-input button {
-  border-radius: 2px;
+    border-radius: 2px;
 }
 
 .upload-song-btn {
-  color: var(--mel-ember-light);
-  border-color: rgba(197, 111, 72, 0.28);
-  background: rgba(197, 111, 72, 0.08);
+    color: var(--mel-ember-light);
+    border-color: rgba(197, 111, 72, 0.28);
+    background: rgba(197, 111, 72, 0.08);
 }
 
 .library-song,
 .person,
 .chat-message {
-  border-radius: 2px;
+    border-radius: 2px;
 }
 
 .library-song:hover:not(:disabled),
 .library-song.active {
-  background: rgba(197, 111, 72, 0.075);
+    background: rgba(197, 111, 72, 0.075);
 }
 
 .library-song.active {
-  border-left-color: var(--mel-ember);
+    border-left-color: var(--mel-ember);
 }
 
 .library-icon {
-  border-radius: 2px;
-  color: var(--mel-ember-light);
+    border-radius: 2px;
+    color: var(--mel-ember-light);
 }
 
 .chat-message {
-  background: rgba(24, 25, 22, 0.62);
+    background: rgba(24, 25, 22, 0.62);
 }
 
 .chat-message:hover {
-  border-color: rgba(197, 111, 72, 0.14);
+    border-color: rgba(197, 111, 72, 0.14);
 }
 
 .host-avatar {
-  background: rgba(197, 111, 72, 0.13);
-  color: var(--mel-ember-light);
-  border-color: rgba(197, 111, 72, 0.26);
+    background: rgba(197, 111, 72, 0.13);
+    color: var(--mel-ember-light);
+    border-color: rgba(197, 111, 72, 0.26);
 }
 
 .chat-input {
-  border-radius: 2px;
-  background: rgba(8, 9, 8, 0.76);
+    border-radius: 2px;
+    background: rgba(8, 9, 8, 0.76);
 }
 
 .chat-input button {
-  background: var(--mel-ember);
+    background: var(--mel-ember);
 }
 
 input[type="range"],
 .song-range {
-  accent-color: var(--mel-ember);
+    accent-color: var(--mel-ember);
 }
 
 .audio-error {
-  color: var(--mel-ember-light);
-  background: rgba(197, 111, 72, 0.07);
-  border-color: rgba(197, 111, 72, 0.18);
+    color: var(--mel-ember-light);
+    background: rgba(197, 111, 72, 0.07);
+    border-color: rgba(197, 111, 72, 0.18);
 }
 
 /* footer */
 .room-footer {
-  background: rgba(7, 8, 7, 0.58);
-  border-top-color: rgba(242, 238, 230, 0.07);
+    background: rgba(7, 8, 7, 0.58);
+    border-top-color: rgba(242, 238, 230, 0.07);
 }
 
 @media (max-width: 900px) {
-  .room-page::after {
-    background-position: 58% center;
-  }
+    .room-page::after {
+        background-position: 58% center;
+    }
 
-  .now-playing {
-    width: 100%;
-  }
+    .now-playing {
+        width: 100%;
+    }
 }
 
 
@@ -1731,11 +1731,9 @@ input[type="range"],
     pointer-events: none;
 
     background-image:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(5, 6, 5, 0.22),
-            rgba(5, 6, 5, 0.58)
-        ),
+            rgba(5, 6, 5, 0.58)),
         url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=92");
 
     background-position: center;
@@ -1758,11 +1756,9 @@ input[type="range"],
     0%,
     22% {
         background-image:
-            linear-gradient(
-                180deg,
+            linear-gradient(180deg,
                 rgba(5, 6, 5, 0.22),
-                rgba(5, 6, 5, 0.58)
-            ),
+                rgba(5, 6, 5, 0.58)),
             url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=92");
 
         background-position: 52% center;
@@ -1773,11 +1769,9 @@ input[type="range"],
     25%,
     47% {
         background-image:
-            linear-gradient(
-                180deg,
+            linear-gradient(180deg,
                 rgba(5, 6, 5, 0.22),
-                rgba(5, 6, 5, 0.58)
-            ),
+                rgba(5, 6, 5, 0.58)),
             url("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=2400&q=92");
 
         background-position: 48% center;
@@ -1788,11 +1782,9 @@ input[type="range"],
     50%,
     72% {
         background-image:
-            linear-gradient(
-                180deg,
+            linear-gradient(180deg,
                 rgba(5, 6, 5, 0.22),
-                rgba(5, 6, 5, 0.58)
-            ),
+                rgba(5, 6, 5, 0.58)),
             url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=2400&q=92");
 
         background-position: 54% center;
@@ -1803,11 +1795,9 @@ input[type="range"],
     75%,
     97% {
         background-image:
-            linear-gradient(
-                180deg,
+            linear-gradient(180deg,
                 rgba(5, 6, 5, 0.22),
-                rgba(5, 6, 5, 0.58)
-            ),
+                rgba(5, 6, 5, 0.58)),
             url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=2400&q=92");
 
         background-position: 46% center;
@@ -1817,11 +1807,9 @@ input[type="range"],
 
     100% {
         background-image:
-            linear-gradient(
-                180deg,
+            linear-gradient(180deg,
                 rgba(5, 6, 5, 0.22),
-                rgba(5, 6, 5, 0.58)
-            ),
+                rgba(5, 6, 5, 0.58)),
             url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=92");
 
         background-position: 52% center;
@@ -1833,11 +1821,9 @@ input[type="range"],
 /* Keep the room itself readable without killing the photograph */
 .room-page {
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(7, 8, 7, 0.22),
-            rgba(7, 8, 7, 0.48)
-        ),
+            rgba(7, 8, 7, 0.48)),
         #0b0c0b;
 }
 
@@ -1848,11 +1834,9 @@ input[type="range"],
 
 .now-playing {
     background:
-        radial-gradient(
-            circle at 50% 30%,
+        radial-gradient(circle at 50% 30%,
             rgba(197, 111, 72, 0.10),
-            transparent 62%
-        ),
+            transparent 62%),
         rgba(10, 11, 10, 0.70) !important;
 }
 
@@ -1873,4 +1857,80 @@ input[type="range"],
         background-position: 58% center;
     }
 }
-    
+
+/* =========================================================
+   MELAMOUR ROOM — FINAL TIMELINE FIX
+   This is intentionally the LAST override.
+   ========================================================= */
+
+/* One clear centered timeline axis. */
+.now-playing .progress-area {
+    display: block !important;
+    width: min(760px, calc(100% - 40px)) !important;
+    max-width: 760px !important;
+    min-width: 0 !important;
+    margin: 30px auto 0 !important;
+    padding: 0 !important;
+    align-self: center !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+}
+
+/* Make the actual track wide and clearly visible. */
+.now-playing .progress-bar {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 5px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    overflow: hidden !important;
+    background: rgba(242, 238, 230, 0.14) !important;
+    cursor: pointer !important;
+}
+
+.now-playing .progress-value {
+    display: block !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    border-radius: inherit !important;
+}
+
+/* Time labels span exactly the same width as the bar. */
+.now-playing .time-row {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin: 9px 0 0 !important;
+    padding: 0 !important;
+}
+
+.now-playing .time-row span {
+    display: block !important;
+    flex: 0 0 auto !important;
+}
+
+/* Controls stay on the same central axis. */
+.now-playing .main-controls {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 20px auto 0 !important;
+}
+
+/* Give the player a little breathing room without making it taller. */
+.now-playing {
+    padding-bottom: 30px !important;
+}
+
+@media (max-width: 700px) {
+    .now-playing .progress-area {
+        width: calc(100% - 28px) !important;
+    }
+}

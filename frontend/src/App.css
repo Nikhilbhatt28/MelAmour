@@ -2566,3 +2566,44 @@ body,
     max-height: 100dvh !important;
   }
 }
+
+/* =========================================================
+   FINAL HOME TOP ALIGNMENT
+   No top border, no hidden top padding, no vertical push.
+   ========================================================= */
+
+html,
+body,
+#root {
+  border-top: 0 !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.site {
+  border-top: 0 !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Navbar sits flush at the very top. */
+.navbar {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+/* Remove the extra vertical padding that was pushing the hero down. */
+.hero {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-copy {
+  padding-top: 0 !important;
+}
+
+/* Keep the hero vertically balanced without adding an invisible top offset. */
+.hero {
+  min-height: calc(100dvh - 92px) !important;
+}
