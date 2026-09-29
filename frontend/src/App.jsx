@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   ArrowRight,
@@ -45,6 +45,99 @@ const features = [
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
+
+  // =========================================================
+  // BACKGROUND MUSIC
+  // =========================================================
+
+  const bgMusicRef = useRef(null);
+  const [bgMusicOn, setBgMusicOn] = useState(() => {
+    return localStorage.getItem("melamour-bg-music") !== "off";
+  });
+
+  useEffect(() => {
+    if (currentPage !== "home") {
+      bgMusicRef.current?.pause();
+      return;
+    }
+
+    const audio = new Audio("/music/melamour-ambient.mp3");
+    audio.loop = true;
+    audio.volume = 0.22;
+    bgMusicRef.current = audio;
+
+    const startMusic = async () => {
+      if (!bgMusicOn) return;
+
+      try {
+        await audio.play();
+      } catch {
+        // Browser autoplay policy may block unmuted playback.
+        // First user interaction will retry it.
+      }
+    };
+
+    startMusic();
+
+    const retryAfterInteraction = () => {
+      if (!bgMusicOn) return;
+
+      audio.play().catch(() => {});
+      window.removeEventListener("pointerdown", retryAfterInteraction);
+      window.removeEventListener("keydown", retryAfterInteraction);
+    };
+
+    window.addEventListener("pointerdown", retryAfterInteraction, {
+      once: true,
+    });
+    window.addEventListener("keydown", retryAfterInteraction, { once: true });
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+      window.removeEventListener("pointerdown", retryAfterInteraction);
+      window.removeEventListener("keydown", retryAfterInteraction);
+      bgMusicRef.current = null;
+    };
+  }, [currentPage]);
+
+  useEffect(() => {
+    localStorage.setItem("melamour-bg-music", bgMusicOn ? "on" : "off");
+
+    if (!bgMusicRef.current) return;
+
+    if (bgMusicOn) {
+      bgMusicRef.current.play().catch(() => {});
+    } else {
+      bgMusicRef.current.pause();
+    }
+  }, [bgMusicOn]);
+
+  const toggleBackgroundMusic = () => {
+    setBgMusicOn((previous) => !previous);
+  };
+
+  // Always open Home/Room from the top instead of restoring the previous scroll position.
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }, [currentPage]);
+
+  // Prevent the browser from restoring an old scroll position on reload.
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    return () => {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "auto";
+      }
+    };
+  }, []);
 
   // =========================================================
   // CREATE ROOM
@@ -474,39 +567,45 @@ function App() {
 
             {/* PLAYER */}
 
-            <div className="player-card">
-              <div className="album-art">
-                <Music2 size={26} />
+            <div className="player-card ambient-player">
+              <div className="album-art ambient-art">
+                <Music2 size={25} />
               </div>
 
               <div className="track-info">
-                <strong>The Night We Met</strong>
-
-                <span>Lord Huron</span>
+                <strong>Ambient Room Sound</strong>
+                <span>MelAmour</span>
               </div>
 
-              <Heart className="heart" size={18} fill="currentColor" />
-
-              <div className="wave">
+              <div className="wave" aria-hidden="true">
                 {Array.from({ length: 28 }).map((_, index) => (
                   <i
                     key={index}
                     style={{
                       height: `${8 + ((index * 13) % 25)}px`,
+                      opacity: bgMusicOn ? 1 : 0.25,
                     }}
                   />
                 ))}
               </div>
 
-              <div className="player-controls">
-                <span>2:14</span>
-
-                <button>
-                  <Play size={13} fill="currentColor" />
-                </button>
-
-                <span>5:21</span>
-              </div>
+              <button
+                className={`ambient-toggle ${bgMusicOn ? "is-on" : ""}`}
+                onClick={toggleBackgroundMusic}
+                aria-label={
+                  bgMusicOn
+                    ? "Turn background music off"
+                    : "Turn background music on"
+                }
+                aria-pressed={bgMusicOn}
+              >
+                <span className="ambient-toggle-track">
+                  <span className="ambient-toggle-thumb" />
+                </span>
+                <span className="ambient-toggle-label">
+                  {bgMusicOn ? "ON" : "OFF"}
+                </span>
+              </button>
             </div>
           </div>
         </section>
