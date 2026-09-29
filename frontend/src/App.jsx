@@ -120,17 +120,21 @@ function App() {
   // Always start Home/Room at the very top.
   // useLayoutEffect runs before the browser paints the new page.
   useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+    const resetScroll = () => {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    };
 
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-    });
+    resetScroll();
 
-    const timer = window.setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 50);
+    const frame = window.requestAnimationFrame(resetScroll);
+    const timer = window.setTimeout(resetScroll, 80);
 
-    return () => window.clearTimeout(timer);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
   }, [currentPage]);
 
   // Stop Chrome/Edge from restoring the previous scroll position.
