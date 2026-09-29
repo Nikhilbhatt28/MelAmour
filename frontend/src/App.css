@@ -422,3 +422,41 @@ input {
     font-size: 28px;
   }
 }
+
+
+/* =========================================================
+   APP.CSS — CINEMATIC MODAL BACKDROP
+   Same visual family as Index + Room
+   ========================================================= */
+
+.modal-backdrop {
+  background:
+    linear-gradient(90deg,
+      rgba(5, 6, 5, 0.84),
+      rgba(5, 6, 5, 0.58),
+      rgba(5, 6, 5, 0.82)),
+    url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2200&q=90") center / cover no-repeat !important;
+
+  animation: melamourModalCinema 22s ease-in-out infinite alternate;
+}
+
+@keyframes melamourModalCinema {
+  0% {
+    background-position: 48% center;
+    background-size: 100%;
+  }
+
+  100% {
+    background-position: 54% center;
+    background-size: 108%;
+  }
+}
+
+.room-modal {
+  background:
+    linear-gradient(145deg,
+      rgba(22, 24, 21, 0.91),
+      rgba(8, 9, 8, 0.94)) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}

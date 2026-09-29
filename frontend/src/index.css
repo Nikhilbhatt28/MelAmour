@@ -2029,3 +2029,140 @@ h1 span {
     padding-bottom: 20px;
   }
 }
+
+
+/* =========================================================
+   FINAL GLOBAL CINEMATIC BACKGROUND
+   Home / Index page
+   ========================================================= */
+
+.site {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background: #090a09;
+  overflow-x: hidden;
+}
+
+.site::after {
+  content: "";
+  position: fixed;
+  inset: -4%;
+  z-index: -2;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(90deg,
+      rgba(7, 8, 7, 0.78) 0%,
+      rgba(7, 8, 7, 0.40) 52%,
+      rgba(7, 8, 7, 0.68) 100%),
+    linear-gradient(180deg,
+      rgba(7, 8, 7, 0.22),
+      rgba(7, 8, 7, 0.60)),
+    url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=92");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  opacity: 0.82;
+  filter: saturate(0.78) contrast(1.05);
+  transform: scale(1.03);
+
+  animation: melamourIndexCinema 36s ease-in-out infinite;
+}
+
+.site::before {
+  z-index: -1;
+  opacity: 0.9;
+}
+
+@keyframes melamourIndexCinema {
+
+  0%,
+  22% {
+    background-image:
+      linear-gradient(90deg, rgba(7, 8, 7, .78), rgba(7, 8, 7, .40) 52%, rgba(7, 8, 7, .68)),
+      linear-gradient(180deg, rgba(7, 8, 7, .22), rgba(7, 8, 7, .60)),
+      url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=92");
+    background-position: 50% center;
+    transform: scale(1.03);
+    opacity: .82;
+  }
+
+  25%,
+  47% {
+    background-image:
+      linear-gradient(90deg, rgba(7, 8, 7, .78), rgba(7, 8, 7, .40) 52%, rgba(7, 8, 7, .68)),
+      linear-gradient(180deg, rgba(7, 8, 7, .22), rgba(7, 8, 7, .60)),
+      url("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=2400&q=92");
+    background-position: 46% center;
+    transform: scale(1.09);
+    opacity: .86;
+  }
+
+  50%,
+  72% {
+    background-image:
+      linear-gradient(90deg, rgba(7, 8, 7, .78), rgba(7, 8, 7, .40) 52%, rgba(7, 8, 7, .68)),
+      linear-gradient(180deg, rgba(7, 8, 7, .22), rgba(7, 8, 7, .60)),
+      url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=2400&q=92");
+    background-position: 54% center;
+    transform: scale(1.035);
+    opacity: .82;
+  }
+
+  75%,
+  97% {
+    background-image:
+      linear-gradient(90deg, rgba(7, 8, 7, .78), rgba(7, 8, 7, .40) 52%, rgba(7, 8, 7, .68)),
+      linear-gradient(180deg, rgba(7, 8, 7, .22), rgba(7, 8, 7, .60)),
+      url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=2400&q=92");
+    background-position: 48% center;
+    transform: scale(1.09);
+    opacity: .86;
+  }
+
+  100% {
+    background-image:
+      linear-gradient(90deg, rgba(7, 8, 7, .78), rgba(7, 8, 7, .40) 52%, rgba(7, 8, 7, .68)),
+      linear-gradient(180deg, rgba(7, 8, 7, .22), rgba(7, 8, 7, .60)),
+      url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=92");
+    background-position: 50% center;
+    transform: scale(1.03);
+    opacity: .82;
+  }
+}
+
+/* Keep content readable while letting the photograph remain visible. */
+.navbar,
+.hero,
+.features,
+.features-section,
+.footer {
+  position: relative;
+  z-index: 2;
+}
+
+.ambient,
+.ambient-one,
+.ambient-two,
+.visual-glow {
+  opacity: 0.22;
+  filter: blur(120px);
+}
+
+/* transparent glass, not opaque cards */
+.room-scene,
+.music-player,
+.feature-card {
+  background-color: rgba(10, 11, 10, 0.50) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@media (max-width: 700px) {
+  .site::after {
+    background-position: 58% center;
+  }
+}
