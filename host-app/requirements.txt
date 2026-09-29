@@ -1,5 +1,0 @@
-aiortc==1.13.0
-soundcard==0.4.4
-numpy
-websocket-client
-stomp.py
