@@ -2426,3 +2426,143 @@ body,
 #root {
   scroll-margin-top: 0 !important;
 }
+
+/* =========================================================
+   MELAMOUR — ACTUAL LANDING FIX
+   Deterministic scroll container + guaranteed button hit area
+   ========================================================= */
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  scroll-behavior: auto !important;
+}
+
+body,
+#root {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* THIS is now the only landing-page scroll container. */
+.site {
+  position: relative !important;
+  width: 100% !important;
+  height: 100dvh !important;
+  min-height: 100dvh !important;
+  max-height: 100dvh !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+
+  overscroll-behavior: none !important;
+  scroll-behavior: auto !important;
+  scroll-padding: 0 !important;
+  scroll-margin: 0 !important;
+
+  isolation: isolate !important;
+}
+
+/* Navbar is ALWAYS at the top of the landing page. */
+.navbar {
+  position: relative !important;
+  top: auto !important;
+  margin-top: 0 !important;
+  z-index: 1000 !important;
+}
+
+/* Hero follows the navbar instead of being pushed down by viewport restore. */
+.hero {
+  position: relative !important;
+  margin-top: 0 !important;
+  z-index: 100 !important;
+}
+
+/* Nothing decorative can intercept UI interaction. */
+.site::before,
+.site::after,
+.ambient,
+.ambient-one,
+.ambient-two,
+.visual,
+.visual *,
+.room-scene,
+.room-scene *,
+.visual-glow,
+.player-card {
+  pointer-events: none !important;
+}
+
+/* UI controls remain interactive. */
+.navbar,
+.navbar *,
+.hero-copy,
+.hero-copy *,
+.hero-actions,
+.hero-actions *,
+.nav-cta,
+.primary-btn,
+.secondary-btn,
+.social-proof,
+.social-proof * {
+  pointer-events: auto !important;
+}
+
+/* Force the two important buttons above every artwork layer. */
+.nav-cta,
+.primary-btn,
+.secondary-btn {
+  position: relative !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* The music toggle is the only interactive element inside the artwork card. */
+.ambient-player {
+  pointer-events: none !important;
+}
+
+.ambient-toggle {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 10001 !important;
+}
+
+/* Modal is outside the normal landing flow and always wins the stack. */
+.modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483000 !important;
+  pointer-events: auto !important;
+}
+
+.room-modal,
+.room-modal * {
+  pointer-events: auto !important;
+}
+
+/* Don't let anchor navigation change the initial landing position. */
+#home {
+  scroll-margin-top: 0 !important;
+}
+
+/* Mobile keeps the same deterministic scroll model. */
+@media (max-width: 700px) {
+  .site {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+  }
+}

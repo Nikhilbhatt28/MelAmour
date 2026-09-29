@@ -45,6 +45,7 @@ const features = [
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
+  const homeScrollRef = useRef(null);
 
   // =========================================================
   // BACKGROUND MUSIC
@@ -117,48 +118,44 @@ function App() {
     setBgMusicOn((previous) => !previous);
   };
 
-  // Always start Home/Room at the very top.
-  // useLayoutEffect runs before the browser paints the new page.
+  // Home uses its own scroll container so browser scroll restoration
+  // can never push the landing page down.
   useLayoutEffect(() => {
-    const resetScroll = () => {
+    const resetHomeScroll = () => {
+      if (currentPage === "home" && homeScrollRef.current) {
+        homeScrollRef.current.scrollTop = 0;
+      }
+
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     };
 
-    resetScroll();
+    resetHomeScroll();
 
-    const frame = window.requestAnimationFrame(resetScroll);
-    const timer = window.setTimeout(resetScroll, 80);
+    const frame = window.requestAnimationFrame(resetHomeScroll);
+    const timer1 = window.setTimeout(resetHomeScroll, 50);
+    const timer2 = window.setTimeout(resetHomeScroll, 300);
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.clearTimeout(timer);
+      window.clearTimeout(timer1);
+      window.clearTimeout(timer2);
     };
   }, [currentPage]);
 
-  // Stop Chrome/Edge from restoring the previous scroll position.
+  // Disable browser restoration before/while the app is active.
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
 
-    const forceTop = () => {
-      if (currentPage === "home") {
-        window.scrollTo(0, 0);
-      }
-    };
-
-    window.addEventListener("pageshow", forceTop);
-
     return () => {
-      window.removeEventListener("pageshow", forceTop);
-
       if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "auto";
+        window.history.scrollRestoration = "manual";
       }
     };
-  }, [currentPage]);
+  }, []);
 
   // =========================================================
   // CREATE ROOM
@@ -193,6 +190,20 @@ function App() {
 
   const [createError, setCreateError] = useState("");
   const [joinError, setJoinError] = useState("");
+
+  // =========================================================
+  // OPEN HOME MODALS
+  // =========================================================
+
+  const openCreateRoom = () => {
+    setCreateError("");
+    setShowCreateRoom(true);
+  };
+
+  const openJoinRoom = () => {
+    setJoinError("");
+    setShowJoinRoom(true);
+  };
 
   // =========================================================
   // CREATE ROOM
@@ -441,7 +452,7 @@ function App() {
   // =========================================================
 
   return (
-    <div className="site">
+    <div className="site" ref={homeScrollRef}>
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
 
@@ -473,9 +484,9 @@ function App() {
         <button
           type="button"
           className="nav-cta"
-          onClick={() => {
-            setCreateError("");
-            setShowCreateRoom(true);
+          onPointerDown={(event) => {
+            event.preventDefault();
+            openCreateRoom();
           }}
         >
           Get Started
@@ -511,9 +522,9 @@ function App() {
               <button
                 type="button"
                 className="primary-btn"
-                onClick={() => {
-                  setCreateError("");
-                  setShowCreateRoom(true);
+                onPointerDown={(event) => {
+                  event.preventDefault();
+                  openCreateRoom();
                 }}
               >
                 <Users size={18} />
@@ -524,9 +535,9 @@ function App() {
               <button
                 type="button"
                 className="secondary-btn"
-                onClick={() => {
-                  setJoinError("");
-                  setShowJoinRoom(true);
+                onPointerDown={(event) => {
+                  event.preventDefault();
+                  openJoinRoom();
                 }}
               >
                 <LogIn size={17} />
