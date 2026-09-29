@@ -1,5 +1,5 @@
-MELAMOUR_WS = "ws://localhost:8080/ws"
-ROOM_CODE = "9HQWJ9"
+MELAMOUR_WS = "wss://melamour-backend.onrender.com/ws"
+ROOM_CODE = "P8LMNP"
 HOST_NAME = "Nikhil"
 SAMPLE_RATE = 48000
 CHANNELS = 2

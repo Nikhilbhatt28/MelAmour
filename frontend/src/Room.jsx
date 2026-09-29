@@ -151,10 +151,14 @@ function Room({
       if (stream && remoteAudioRef.current) {
         remoteAudioRef.current.srcObject = stream;
 
+        remoteAudioRef.current.muted = false;
         remoteAudioRef.current.volume = 1;
 
         remoteAudioRef.current.play().catch((error) => {
-          console.warn("Browser blocked remote audio autoplay:", error);
+          console.warn(
+            "Browser blocked remote audio autoplay. Use Enable Host Audio:",
+            error,
+          );
         });
 
         setRemoteAudioConnected(true);
@@ -199,6 +203,28 @@ function Room({
     setAudioError(
       "System audio is handled by the Melamour host app. Start host.py on the Windows host.",
     );
+  };
+
+  const enableRemoteAudio = async () => {
+    const audio = remoteAudioRef.current;
+
+    if (!audio) {
+      setAudioError("Audio element is not ready yet.");
+      return;
+    }
+
+    try {
+      audio.muted = false;
+      audio.volume = 1;
+      await audio.play();
+
+      setRemoteAudioConnected(true);
+      setAudioError("");
+      console.log("Remote host audio playback enabled.");
+    } catch (error) {
+      console.error("Audio playback failed:", error);
+      setAudioError("Tap Enable Host Audio again.");
+    }
   };
 
   const stopAudioSharing = () => {
@@ -886,10 +912,31 @@ function Room({
             </div>
           )}
 
+          {!isHost && (
+            <button
+              onClick={enableRemoteAudio}
+              style={{
+                padding: "12px 20px",
+                borderRadius: "12px",
+                border: "none",
+                background: "#e8a0b8",
+                color: "#171717",
+                fontWeight: 700,
+                cursor: "pointer",
+                marginTop: "14px",
+                marginBottom: "4px",
+              }}
+            >
+              🔊 Enable Host Audio
+            </button>
+          )}
+
           <audio
             ref={remoteAudioRef}
             autoPlay
             playsInline
+            controls={false}
+            muted={false}
             style={{
               display: "none",
             }}
