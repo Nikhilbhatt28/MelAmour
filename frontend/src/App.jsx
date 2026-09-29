@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import {
   ArrowRight,
@@ -45,7 +46,6 @@ const features = [
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
-  const homeScrollRef = useRef(null);
 
   // =========================================================
   // BACKGROUND MUSIC
@@ -118,43 +118,33 @@ function App() {
     setBgMusicOn((previous) => !previous);
   };
 
-  // Home uses its own scroll container so browser scroll restoration
-  // can never push the landing page down.
+  // Always open each app page at the real document top.
+  // Do not use the landing page itself as a scroll container.
   useLayoutEffect(() => {
-    const resetHomeScroll = () => {
-      if (currentPage === "home" && homeScrollRef.current) {
-        homeScrollRef.current.scrollTop = 0;
-      }
+    if (currentPage !== "home") {
+      window.scrollTo(0, 0);
+      return;
+    }
 
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    };
+    // A restored #home hash points below the navbar, so remove it before
+    // the browser gets a chance to scroll to that anchor.
+    if (window.location.hash) {
+      window.history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}`,
+      );
+    }
 
-    resetHomeScroll();
-
-    const frame = window.requestAnimationFrame(resetHomeScroll);
-    const timer1 = window.setTimeout(resetHomeScroll, 50);
-    const timer2 = window.setTimeout(resetHomeScroll, 300);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(timer1);
-      window.clearTimeout(timer2);
-    };
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [currentPage]);
 
-  // Disable browser restoration before/while the app is active.
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-
-    return () => {
-      if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual";
-      }
-    };
   }, []);
 
   // =========================================================
@@ -452,7 +442,7 @@ function App() {
   // =========================================================
 
   return (
-    <div className="site" ref={homeScrollRef}>
+    <div className="site">
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
 
@@ -470,7 +460,19 @@ function App() {
         </div>
 
         <nav>
-          <a className="active" href="#home">
+          <a
+            className="active"
+            href="#home"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.replaceState(
+                null,
+                "",
+                `${window.location.pathname}${window.location.search}`,
+              );
+              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            }}
+          >
             Home
           </a>
 
@@ -686,35 +688,235 @@ function App() {
           CREATE ROOM MODAL
           ===================================================== */}
 
-      {showCreateRoom && (
-        <div
-          className="modal-backdrop"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              closeCreateModal();
-            }
-          }}
-        >
-          <div className="room-modal">
-            <button
-              className="close-modal"
-              onClick={closeCreateModal}
-              disabled={creatingRoom}
+      {showCreateRoom &&
+        createPortal(
+          <>
+            <div
+              className="modal-backdrop"
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget) {
+                  closeCreateModal();
+                }
+              }}
             >
-              <X size={18} />
-            </button>
+              <div className="room-modal">
+                <button
+                  className="close-modal"
+                  onClick={closeCreateModal}
+                  disabled={creatingRoom}
+                >
+                  <X size={18} />
+                </button>
 
-            {!roomCreated ? (
-              <>
+                {!roomCreated ? (
+                  <>
+                    <div className="modal-icon">
+                      <Users size={23} />
+                    </div>
+
+                    <h2>Create a room</h2>
+
+                    <p className="modal-description">
+                      Set up your private listening space and invite your
+                      people.
+                    </p>
+
+                    {/* YOUR NAME */}
+
+                    <div className="input-group">
+                      <label>Your name</label>
+
+                      <input
+                        type="text"
+                        placeholder="Enter your name"
+                        value={joinName}
+                        maxLength={30}
+                        autoComplete="name"
+                        onChange={(event) => {
+                          setJoinName(event.target.value);
+                          setCreateError("");
+                        }}
+                      />
+                    </div>
+
+                    {/* ROOM NAME */}
+
+                    <div className="input-group">
+                      <label>Room name</label>
+
+                      <input
+                        type="text"
+                        placeholder="Late Night"
+                        value={roomName}
+                        maxLength={100}
+                        onChange={(event) => {
+                          setRoomName(event.target.value);
+                          setCreateError("");
+                        }}
+                      />
+                    </div>
+
+                    {/* PASSWORD */}
+
+                    <div className="input-group">
+                      <label>Password</label>
+
+                      <div className="input-with-icon">
+                        <LockKeyhole size={16} />
+
+                        <input
+                          type="password"
+                          placeholder="Optional"
+                          value={createPassword}
+                          maxLength={100}
+                          autoComplete="new-password"
+                          onChange={(event) => {
+                            setCreatePassword(event.target.value);
+                            setCreateError("");
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {createError && (
+                      <div
+                        style={{
+                          marginTop: "10px",
+                          padding: "10px 12px",
+                          borderRadius: "10px",
+                          background: "rgba(190, 80, 100, 0.10)",
+                          border: "1px solid rgba(190, 80, 100, 0.22)",
+                          color: "#d9a7b8",
+                          fontSize: "12px",
+                          lineHeight: "1.4",
+                        }}
+                      >
+                        {createError}
+                      </div>
+                    )}
+
+                    <button
+                      type="button"
+                      className="create-modal-btn"
+                      onClick={createRoom}
+                      disabled={creatingRoom}
+                      style={{
+                        opacity: creatingRoom ? 0.7 : 1,
+                        cursor: creatingRoom ? "wait" : "pointer",
+                      }}
+                    >
+                      {creatingRoom ? "Creating..." : "Create Room"}
+
+                      {!creatingRoom && <ArrowRight size={17} />}
+                    </button>
+
+                    <div className="modal-security">
+                      <LockKeyhole size={13} />
+                      Your room stays private.
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="success-icon">
+                      <Check size={24} />
+                    </div>
+
+                    <h2>Your room is ready</h2>
+
+                    <p className="modal-description">
+                      Share this code with the people you want to listen with.
+                    </p>
+
+                    <div className="room-code-label">ROOM CODE</div>
+
+                    <div className="room-code">
+                      <span>{roomCode}</span>
+
+                      <button
+                        onClick={() => navigator.clipboard?.writeText(roomCode)}
+                        title="Copy room code"
+                      >
+                        <Copy size={17} />
+                      </button>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="create-modal-btn"
+                      onClick={enterCreatedRoom}
+                    >
+                      Enter Room
+                      <ArrowRight size={17} />
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </>,
+          document.body,
+        )}
+
+      {/* =====================================================
+          JOIN ROOM MODAL
+          ===================================================== */}
+
+      {showJoinRoom &&
+        createPortal(
+          <>
+            <div
+              className="modal-backdrop"
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget) {
+                  closeJoinModal();
+                }
+              }}
+            >
+              <div className="room-modal">
+                <button
+                  className="close-modal"
+                  onClick={closeJoinModal}
+                  disabled={joiningRoom}
+                >
+                  <X size={18} />
+                </button>
+
                 <div className="modal-icon">
-                  <Users size={23} />
+                  <LogIn size={23} />
                 </div>
 
-                <h2>Create a room</h2>
+                <h2>Join a room</h2>
 
                 <p className="modal-description">
-                  Set up your private listening space and invite your people.
+                  Enter the room code shared by your host.
                 </p>
+
+                {/* ROOM CODE */}
+
+                <div className="input-group">
+                  <label>Room code</label>
+
+                  <input
+                    type="text"
+                    placeholder="ABC123"
+                    maxLength={6}
+                    value={joinRoomCode}
+                    autoCapitalize="characters"
+                    onChange={(event) => {
+                      setJoinRoomCode(
+                        event.target.value
+                          .toUpperCase()
+                          .replace(/[^A-Z0-9]/g, ""),
+                      );
+
+                      setJoinError("");
+                    }}
+                    style={{
+                      letterSpacing: "2px",
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                    }}
+                  />
+                </div>
 
                 {/* YOUR NAME */}
 
@@ -725,28 +927,16 @@ function App() {
                     type="text"
                     placeholder="Enter your name"
                     value={joinName}
-                    maxLength={30}
+                    maxLength={40}
                     autoComplete="name"
                     onChange={(event) => {
                       setJoinName(event.target.value);
-                      setCreateError("");
+                      setJoinError("");
                     }}
-                  />
-                </div>
-
-                {/* ROOM NAME */}
-
-                <div className="input-group">
-                  <label>Room name</label>
-
-                  <input
-                    type="text"
-                    placeholder="Late Night"
-                    value={roomName}
-                    maxLength={100}
-                    onChange={(event) => {
-                      setRoomName(event.target.value);
-                      setCreateError("");
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" && !joiningRoom) {
+                        joinRoom();
+                      }
                     }}
                   />
                 </div>
@@ -761,19 +951,24 @@ function App() {
 
                     <input
                       type="password"
-                      placeholder="Optional"
-                      value={createPassword}
+                      placeholder="If the room has one"
+                      value={joinPassword}
                       maxLength={100}
-                      autoComplete="new-password"
+                      autoComplete="current-password"
                       onChange={(event) => {
-                        setCreatePassword(event.target.value);
-                        setCreateError("");
+                        setJoinPassword(event.target.value);
+                        setJoinError("");
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" && !joiningRoom) {
+                          joinRoom();
+                        }
                       }}
                     />
                   </div>
                 </div>
 
-                {createError && (
+                {joinError && (
                   <div
                     style={{
                       marginTop: "10px",
@@ -786,215 +981,33 @@ function App() {
                       lineHeight: "1.4",
                     }}
                   >
-                    {createError}
+                    {joinError}
                   </div>
                 )}
 
                 <button
-                  type="button"
                   className="create-modal-btn"
-                  onClick={createRoom}
-                  disabled={creatingRoom}
+                  onClick={joinRoom}
+                  disabled={joiningRoom}
                   style={{
-                    opacity: creatingRoom ? 0.7 : 1,
-                    cursor: creatingRoom ? "wait" : "pointer",
+                    opacity: joiningRoom ? 0.7 : 1,
+                    cursor: joiningRoom ? "wait" : "pointer",
                   }}
                 >
-                  {creatingRoom ? "Creating..." : "Create Room"}
+                  {joiningRoom ? "Joining..." : "Join Room"}
 
-                  {!creatingRoom && <ArrowRight size={17} />}
+                  {!joiningRoom && <ArrowRight size={17} />}
                 </button>
 
                 <div className="modal-security">
                   <LockKeyhole size={13} />
-                  Your room stays private.
+                  Only people with the room code can enter.
                 </div>
-              </>
-            ) : (
-              <>
-                <div className="success-icon">
-                  <Check size={24} />
-                </div>
-
-                <h2>Your room is ready</h2>
-
-                <p className="modal-description">
-                  Share this code with the people you want to listen with.
-                </p>
-
-                <div className="room-code-label">ROOM CODE</div>
-
-                <div className="room-code">
-                  <span>{roomCode}</span>
-
-                  <button
-                    onClick={() => navigator.clipboard?.writeText(roomCode)}
-                    title="Copy room code"
-                  >
-                    <Copy size={17} />
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  className="create-modal-btn"
-                  onClick={enterCreatedRoom}
-                >
-                  Enter Room
-                  <ArrowRight size={17} />
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* =====================================================
-          JOIN ROOM MODAL
-          ===================================================== */}
-
-      {showJoinRoom && (
-        <div
-          className="modal-backdrop"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              closeJoinModal();
-            }
-          }}
-        >
-          <div className="room-modal">
-            <button
-              className="close-modal"
-              onClick={closeJoinModal}
-              disabled={joiningRoom}
-            >
-              <X size={18} />
-            </button>
-
-            <div className="modal-icon">
-              <LogIn size={23} />
-            </div>
-
-            <h2>Join a room</h2>
-
-            <p className="modal-description">
-              Enter the room code shared by your host.
-            </p>
-
-            {/* ROOM CODE */}
-
-            <div className="input-group">
-              <label>Room code</label>
-
-              <input
-                type="text"
-                placeholder="ABC123"
-                maxLength={6}
-                value={joinRoomCode}
-                autoCapitalize="characters"
-                onChange={(event) => {
-                  setJoinRoomCode(
-                    event.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""),
-                  );
-
-                  setJoinError("");
-                }}
-                style={{
-                  letterSpacing: "2px",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                }}
-              />
-            </div>
-
-            {/* YOUR NAME */}
-
-            <div className="input-group">
-              <label>Your name</label>
-
-              <input
-                type="text"
-                placeholder="Enter your name"
-                value={joinName}
-                maxLength={40}
-                autoComplete="name"
-                onChange={(event) => {
-                  setJoinName(event.target.value);
-                  setJoinError("");
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" && !joiningRoom) {
-                    joinRoom();
-                  }
-                }}
-              />
-            </div>
-
-            {/* PASSWORD */}
-
-            <div className="input-group">
-              <label>Password</label>
-
-              <div className="input-with-icon">
-                <LockKeyhole size={16} />
-
-                <input
-                  type="password"
-                  placeholder="If the room has one"
-                  value={joinPassword}
-                  maxLength={100}
-                  autoComplete="current-password"
-                  onChange={(event) => {
-                    setJoinPassword(event.target.value);
-                    setJoinError("");
-                  }}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" && !joiningRoom) {
-                      joinRoom();
-                    }
-                  }}
-                />
               </div>
             </div>
-
-            {joinError && (
-              <div
-                style={{
-                  marginTop: "10px",
-                  padding: "10px 12px",
-                  borderRadius: "10px",
-                  background: "rgba(190, 80, 100, 0.10)",
-                  border: "1px solid rgba(190, 80, 100, 0.22)",
-                  color: "#d9a7b8",
-                  fontSize: "12px",
-                  lineHeight: "1.4",
-                }}
-              >
-                {joinError}
-              </div>
-            )}
-
-            <button
-              className="create-modal-btn"
-              onClick={joinRoom}
-              disabled={joiningRoom}
-              style={{
-                opacity: joiningRoom ? 0.7 : 1,
-                cursor: joiningRoom ? "wait" : "pointer",
-              }}
-            >
-              {joiningRoom ? "Joining..." : "Join Room"}
-
-              {!joiningRoom && <ArrowRight size={17} />}
-            </button>
-
-            <div className="modal-security">
-              <LockKeyhole size={13} />
-              Only people with the room code can enter.
-            </div>
-          </div>
-        </div>
-      )}
+          </>,
+          document.body,
+        )}
     </div>
   );
 }

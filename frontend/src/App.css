@@ -2426,6 +2426,7 @@ body,
 #root {
   scroll-margin-top: 0 !important;
 }
+
 /* HOME SCROLL TEST — DO NOT TOUCH BACKGROUND */
 html,
 body,
@@ -2449,4 +2450,31 @@ body,
   inset: -4% !important;
   pointer-events: none !important;
   transform: scale(1.03) !important;
+}
+
+/* =========================================================
+   FINAL VIEWPORT FIX — MODALS + LANDING SCROLL
+   ========================================================= */
+.modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow-y: auto !important;
+  z-index: 2147483647 !important;
+}
+
+.room-modal {
+  position: relative !important;
+  flex: 0 1 480px !important;
+  max-height: calc(100dvh - 40px) !important;
+  overflow-y: auto !important;
+  margin: auto !important;
 }
