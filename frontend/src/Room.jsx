@@ -216,6 +216,39 @@ function Room({
     try {
       audio.muted = false;
       audio.volume = 1;
+
+      // If the WebRTC stream has not arrived yet, restart the guest
+      // connection and ask the Windows host app for the audio again.
+      if (!audio.srcObject) {
+        peerConnectionsRef.current.forEach((_, remoteClientId) => {
+          closePeerConnection(remoteClientId);
+        });
+
+        sendSignal({
+          type: "WEBRTC_REQUEST",
+          sender: clientIdRef.current,
+          role: userRole,
+          clientId: clientIdRef.current,
+        });
+
+        // Give the host a few seconds to complete offer/answer and attach
+        // the incoming MediaStream before attempting playback.
+        for (let attempt = 0; attempt < 20; attempt += 1) {
+          await new Promise((resolve) => setTimeout(resolve, 250));
+
+          if (audio.srcObject) {
+            break;
+          }
+        }
+      }
+
+      if (!audio.srcObject) {
+        setAudioError(
+          "Host audio stream is not connected yet. Start host.py and try again.",
+        );
+        return;
+      }
+
       await audio.play();
 
       setRemoteAudioConnected(true);
@@ -896,7 +929,7 @@ function Room({
             </div>
           )}
 
-          {audioError && isHost && (
+          {audioError && (
             <div
               style={{
                 marginTop: "12px",
