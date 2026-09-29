@@ -1,25 +1,30 @@
 /* =========================================================
-   MELAMOUR — ULTRA-PREMIUM ROOM THEME & LUXURY VIBES
+   MELAMOUR — CINEMATIC OBSIDIAN & EMBER MUSIC ROOM
    ========================================================= */
 
 :root {
-    --mel-bg: #090a0f;
+    --mel-bg: #0d0d0b;
     --mel-panel: rgba(18, 20, 28, 0.85);
     --mel-panel-soft: rgba(24, 27, 38, 0.82);
 
     --mel-border: rgba(235, 175, 200, 0.12);
     --mel-border-soft: rgba(235, 175, 200, 0.05);
 
-    --mel-rose: #e6a1bc;
-    --mel-rose-light: #f7c5db;
-    --mel-rose-glow: rgba(230, 161, 188, 0.25);
+    --mel-ember: #d8893f;
+    --mel-ember-light: #f3c78f;
+    --mel-ember-glow: rgba(230, 161, 188, 0.25);
 
-    --mel-text: #f7f4f6;
-    --mel-text-soft: #9496a1;
-    --mel-muted: #626573;
+    --mel-text: #f4efe5;
+    --mel-text-soft: #a8a397;
+    --mel-muted: #79756b;
 
-    --mel-online: #3ee089;
-    --mel-danger: #f26460;
+    --mel-online: #62d5c7;
+    --mel-danger: #ef9a5b;
+
+    /* New visual system — obsidian / ember / champagne */
+    --mel-ember: #d8893f;
+    --mel-ember-light: #f3c78f;
+    --mel-ember-glow: rgba(216, 137, 63, 0.22);
 }
 
 /* =========================================================
@@ -40,7 +45,7 @@
     background:
         radial-gradient(circle at 50% -20%, rgba(230, 161, 188, 0.1), transparent 50%),
         radial-gradient(circle at 12% 85%, rgba(140, 100, 160, 0.05), transparent 40%),
-        linear-gradient(180deg, #06070a 0%, #090a0f 50%, #040507 100%);
+        linear-gradient(180deg, #0b0b09 0%, #0d0d0b 50%, #080806 100%);
 
     box-sizing: border-box;
     overflow-x: hidden;
@@ -128,7 +133,7 @@
 }
 
 .room-back:hover {
-    color: var(--mel-rose-light);
+    color: var(--mel-ember-light);
     border-color: rgba(230, 161, 188, 0.45);
     background: rgba(230, 161, 188, 0.07);
     transform: translateX(-2px);
@@ -140,7 +145,7 @@
     border-radius: 13px;
     background: rgba(230, 161, 188, 0.1);
     border: 1px solid rgba(230, 161, 188, 0.25);
-    color: var(--mel-rose);
+    color: var(--mel-ember);
     display: grid;
     place-items: center;
     box-shadow: 0 0 18px rgba(230, 161, 188, 0.15);
@@ -239,7 +244,7 @@
 }
 
 .room-code-pill button:hover {
-    color: var(--mel-rose);
+    color: var(--mel-ember);
     background: rgba(230, 161, 188, 0.15);
 }
 
@@ -257,7 +262,7 @@
 }
 
 .room-more:hover {
-    color: var(--mel-rose);
+    color: var(--mel-ember);
     border-color: rgba(230, 161, 188, 0.4);
     background: rgba(230, 161, 188, 0.07);
 }
@@ -307,8 +312,8 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--mel-rose);
-    box-shadow: 0 0 12px var(--mel-rose);
+    background: var(--mel-ember);
+    box-shadow: 0 0 12px var(--mel-ember);
 }
 
 /* =========================================================
@@ -321,7 +326,7 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: radial-gradient(circle at 35% 30%, #3d343f, #181a24 45%, #0a0b0f 78%);
+    background: radial-gradient(circle at 35% 30%, #3b3326, #1b1a15 45%, #0a0b0f 78%);
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow:
         0 35px 70px rgba(0, 0, 0, 0.65),
@@ -372,8 +377,8 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
-    color: var(--mel-rose);
-    background: #141720;
+    color: var(--mel-ember);
+    background: #171711;
     border: 1px solid rgba(230, 161, 188, 0.35);
     z-index: 2;
     box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
@@ -428,7 +433,7 @@
 }
 
 .song-actions button:hover {
-    color: var(--mel-rose);
+    color: var(--mel-ember);
     border-color: rgba(230, 161, 188, 0.4);
     background: rgba(230, 161, 188, 0.1);
 }
@@ -453,9 +458,9 @@
 .progress-value {
     width: 42%;
     height: 100%;
-    background: linear-gradient(90deg, var(--mel-rose), var(--mel-rose-light));
+    background: linear-gradient(90deg, var(--mel-ember), var(--mel-ember-light));
     border-radius: inherit;
-    box-shadow: 0 0 14px var(--mel-rose-glow);
+    box-shadow: 0 0 14px var(--mel-ember-glow);
 }
 
 .time-row {
@@ -492,7 +497,7 @@
 }
 
 .control-small:hover {
-    color: var(--mel-rose);
+    color: var(--mel-ember);
     border-color: rgba(230, 161, 188, 0.35);
     background: rgba(230, 161, 188, 0.08);
 }
@@ -502,12 +507,12 @@
     height: 56px;
     border: 0;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--mel-rose-light), var(--mel-rose));
-    color: #0c0e14;
+    background: linear-gradient(135deg, var(--mel-ember-light), var(--mel-ember));
+    color: #10100d;
     display: grid;
     place-items: center;
     cursor: pointer;
-    box-shadow: 0 12px 32px var(--mel-rose-glow);
+    box-shadow: 0 12px 32px var(--mel-ember-glow);
     transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -583,7 +588,7 @@
 .upload-song-btn {
     border: 1px solid rgba(230, 161, 188, 0.3);
     background: rgba(230, 161, 188, 0.08);
-    color: var(--mel-rose-light);
+    color: var(--mel-ember-light);
     border-radius: 10px;
     padding: 8px 12px;
     display: flex;
@@ -632,7 +637,7 @@
 }
 
 .library-song.active {
-    border-left: 3.5px solid var(--mel-rose);
+    border-left: 3.5px solid var(--mel-ember);
 }
 
 .library-song:disabled {
@@ -672,7 +677,7 @@
     display: grid;
     place-items: center;
     background: rgba(255, 255, 255, 0.04);
-    color: var(--mel-rose);
+    color: var(--mel-ember);
     flex: none;
     border: 1px solid var(--mel-border);
 }
@@ -738,7 +743,7 @@
 
 .host-avatar {
     background: rgba(230, 161, 188, 0.18);
-    color: var(--mel-rose-light);
+    color: var(--mel-ember-light);
     border-color: rgba(230, 161, 188, 0.35);
 }
 
@@ -792,8 +797,8 @@
     height: 34px;
     border: 0;
     border-radius: 10px;
-    background: linear-gradient(135deg, var(--mel-rose-light), var(--mel-rose));
-    color: #0c0e14;
+    background: linear-gradient(135deg, var(--mel-ember-light), var(--mel-ember));
+    color: #10100d;
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -801,7 +806,7 @@
 }
 
 .chat-input button:hover {
-    box-shadow: 0 0 15px var(--mel-rose-glow);
+    box-shadow: 0 0 15px var(--mel-ember-glow);
     transform: scale(1.05);
 }
 
@@ -889,12 +894,12 @@
 
 input[type="range"],
 .song-range {
-    accent-color: var(--mel-rose);
+    accent-color: var(--mel-ember);
 }
 
 .audio-error {
     margin-top: 14px;
-    color: var(--mel-rose-light);
+    color: var(--mel-ember-light);
     font-size: 11.5px;
     text-align: center;
     background: rgba(230, 161, 188, 0.08);
@@ -965,7 +970,7 @@ input[type="range"],
 }
 
 .room-footer button:hover {
-    color: var(--mel-rose-light);
+    color: var(--mel-ember-light);
 }
 
 @media (max-width: 1200px) {
@@ -1044,5 +1049,377 @@ input[type="range"],
 
     .room-footer {
         padding: 0 16px;
+    }
+}
+
+/* =========================================================
+   ROOM REDESIGN — CINEMATIC, SYMMETRICAL, MUSIC-FIRST
+   ========================================================= */
+
+.room-page {
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% -10%, rgba(216, 137, 63, 0.10), transparent 42%),
+        linear-gradient(180deg, #0b0b09 0%, #11100d 48%, #090907 100%);
+}
+
+.room-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 8, 0.60), rgba(10, 10, 8, 0.90)),
+        url("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=2200&q=82") center / cover no-repeat;
+    opacity: 0.22;
+    transform: scale(1.03);
+    animation: roomBackdropPulse 24s ease-in-out infinite alternate;
+}
+
+@keyframes roomBackdropPulse {
+    from {
+        transform: scale(1.03);
+        opacity: 0.18;
+    }
+
+    to {
+        transform: scale(1.08);
+        opacity: 0.25;
+    }
+}
+
+.room-page>* {
+    position: relative;
+    z-index: 2;
+}
+
+.room-header {
+    height: 76px;
+    padding-inline: clamp(18px, 3vw, 42px);
+    background: rgba(11, 11, 9, 0.78);
+    border-bottom-color: rgba(243, 199, 143, 0.12);
+}
+
+.room-brand-icon {
+    border-radius: 4px;
+    background: rgba(216, 137, 63, 0.10);
+    border-color: rgba(216, 137, 63, 0.25);
+}
+
+.room-back,
+.room-more {
+    border-radius: 4px;
+}
+
+.room-code-pill {
+    border-radius: 4px;
+}
+
+.room-main {
+    width: min(1560px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 24px 0 34px;
+}
+
+/* --- Main player: one visual axis --- */
+.now-playing {
+    width: min(920px, 100%);
+    margin-inline: auto;
+    padding: 30px clamp(22px, 4vw, 52px) 28px;
+    border-radius: 5px;
+    background:
+        linear-gradient(180deg, rgba(26, 24, 19, 0.92), rgba(16, 15, 12, 0.94));
+    border-color: rgba(243, 199, 143, 0.16);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+}
+
+.now-playing-label {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+    letter-spacing: 0.24em;
+}
+
+.music-dot {
+    background: var(--mel-ember);
+    box-shadow: 0 0 12px var(--mel-ember);
+}
+
+.album-large {
+    width: clamp(150px, 18vw, 190px);
+    height: clamp(150px, 18vw, 190px);
+    box-shadow:
+        0 28px 65px rgba(0, 0, 0, 0.62),
+        0 0 60px rgba(216, 137, 63, 0.10);
+}
+
+.album-ring {
+    width: 78%;
+    height: 78%;
+    border-color: rgba(243, 199, 143, 0.20);
+}
+
+.album-center {
+    width: 31%;
+    height: 31%;
+    color: var(--mel-ember-light);
+    border-color: rgba(216, 137, 63, 0.35);
+}
+
+/* Absolutely centered song information */
+.song-details {
+    width: 100%;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.song-details h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(20px, 2vw, 25px);
+    letter-spacing: -0.02em;
+}
+
+.song-details p {
+    color: #aaa397;
+}
+
+/* Timeline gets its own centered axis — no drifting */
+.progress-area {
+    width: min(660px, 100%);
+    margin: 24px auto 0;
+    align-self: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.progress-value {
+    background: linear-gradient(90deg, #a85f24, #d8893f 55%, #f3c78f);
+    box-shadow: 0 0 14px rgba(216, 137, 63, 0.25);
+}
+
+.time-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-top: 8px;
+    color: #807b70;
+}
+
+.time-row span:last-child {
+    text-align: right;
+}
+
+.main-controls {
+    justify-content: center;
+    width: 100%;
+    margin-top: 18px;
+    gap: 18px;
+}
+
+.control-small {
+    border-radius: 4px;
+}
+
+.control-play {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #d8893f;
+    color: #11100d;
+    box-shadow: 0 12px 30px rgba(216, 137, 63, 0.24);
+}
+
+.control-play:hover {
+    background: #f0ad62;
+}
+
+/* --- Symmetrical content grid --- */
+.room-panels {
+    grid-template-columns:
+        minmax(250px, 1.15fr) minmax(170px, 0.72fr) minmax(380px, 2.15fr) minmax(210px, 0.78fr);
+    gap: 16px;
+    margin-top: 18px;
+    align-items: stretch;
+}
+
+.room-panel {
+    border-radius: 5px;
+    background: rgba(18, 17, 14, 0.88);
+    border-color: rgba(243, 199, 143, 0.11);
+    padding: 20px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+.panel-header {
+    min-height: 38px;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 0.01em;
+}
+
+.upload-song-btn {
+    border-radius: 3px;
+    background: rgba(216, 137, 63, 0.10);
+    border-color: rgba(216, 137, 63, 0.28);
+    color: var(--mel-ember-light);
+}
+
+/* Library */
+.library-song {
+    border-radius: 4px;
+}
+
+.library-song:hover:not(:disabled),
+.library-song.active {
+    background: rgba(216, 137, 63, 0.08);
+}
+
+.library-song.active {
+    border-left-color: var(--mel-ember);
+}
+
+.library-icon {
+    border-radius: 4px;
+    color: var(--mel-ember);
+}
+
+/* Chat — dominant panel, clean message rhythm */
+.chat-panel {
+    min-height: 520px;
+}
+
+.chat-messages {
+    flex: 1;
+    height: auto;
+    min-height: 380px;
+    margin-top: 16px;
+    gap: 9px;
+}
+
+.chat-message {
+    border-radius: 4px;
+    background: rgba(29, 27, 22, 0.74);
+}
+
+.chat-message:hover {
+    border-color: rgba(216, 137, 63, 0.16);
+}
+
+.host-avatar {
+    background: rgba(216, 137, 63, 0.16);
+    color: var(--mel-ember-light);
+    border-color: rgba(216, 137, 63, 0.28);
+}
+
+.chat-input {
+    border-radius: 4px;
+}
+
+.chat-input button {
+    border-radius: 3px;
+    background: #d8893f;
+    color: #11100d;
+}
+
+.chat-input button:hover {
+    box-shadow: 0 0 18px rgba(216, 137, 63, 0.25);
+}
+
+/* People */
+.person {
+    border-radius: 4px;
+}
+
+.person-playing {
+    color: #8d887d;
+}
+
+.person-playing span {
+    background: var(--mel-ember);
+}
+
+/* Range + errors */
+input[type="range"],
+.song-range {
+    accent-color: var(--mel-ember);
+}
+
+.audio-error {
+    color: var(--mel-ember-light);
+    background: rgba(216, 137, 63, 0.07);
+    border-color: rgba(216, 137, 63, 0.20);
+}
+
+/* Scrollbar */
+.room-page * {
+    scrollbar-color: rgba(216, 137, 63, 0.35) transparent;
+}
+
+.room-page *::-webkit-scrollbar-thumb {
+    background: rgba(216, 137, 63, 0.28);
+}
+
+.room-page *::-webkit-scrollbar-thumb:hover {
+    background: rgba(216, 137, 63, 0.50);
+}
+
+@media (max-width: 1200px) {
+    .room-panels {
+        grid-template-columns: 1.05fr 0.75fr 1.8fr;
+    }
+
+    .people-panel {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 900px) {
+    .room-main {
+        width: min(100% - 28px, 720px);
+    }
+
+    .room-panels {
+        grid-template-columns: 1fr;
+    }
+
+    .people-panel {
+        grid-column: auto;
+    }
+
+    .now-playing {
+        padding-inline: 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    .room-header {
+        padding-inline: 14px;
+    }
+
+    .room-header-right .live-status {
+        display: none;
+    }
+
+    .room-main {
+        width: calc(100% - 20px);
+        padding-top: 12px;
+    }
+
+    .now-playing {
+        padding: 22px 14px;
+    }
+
+    .progress-area {
+        width: 100%;
     }
 }
