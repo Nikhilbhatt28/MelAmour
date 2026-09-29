@@ -1934,3 +1934,143 @@ input[type="range"],
         width: calc(100% - 28px) !important;
     }
 }
+
+/* =========================================================
+   MELAMOUR — CLEAN FINAL ROOM TIMELINE FIX
+   Last override: removes all previous progress sizing conflicts.
+   ========================================================= */
+
+/* Keep the player timeline on one centered axis. */
+.now-playing {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* Works whether progress-bar is a DIV or an INPUT[type=range]. */
+.now-playing .progress-area {
+    display: block !important;
+    width: min(700px, calc(100% - 56px)) !important;
+    max-width: 700px !important;
+    min-width: 0 !important;
+    margin: 28px auto 0 !important;
+    padding: 0 !important;
+    align-self: center !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+}
+
+/* Native range slider — this is what the screenshot is showing. */
+.now-playing .progress-area input.progress-bar,
+.now-playing input.progress-bar[type="range"] {
+    display: block !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 100% !important;
+    max-width: 700px !important;
+    min-width: 0 !important;
+    height: 5px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: none !important;
+    background: rgba(242, 238, 230, 0.16) !important;
+    border-radius: 999px !important;
+    cursor: pointer !important;
+    accent-color: var(--mel-ember) !important;
+}
+
+/* Chrome / Edge track */
+.now-playing input.progress-bar[type="range"]::-webkit-slider-runnable-track {
+    width: 100% !important;
+    height: 5px !important;
+    border-radius: 999px !important;
+    background: rgba(242, 238, 230, 0.16) !important;
+}
+
+/* Chrome / Edge thumb */
+.now-playing input.progress-bar[type="range"]::-webkit-slider-thumb {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin-top: -4.5px !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: var(--mel-ember-light) !important;
+    box-shadow: 0 0 0 3px rgba(216, 137, 63, 0.16) !important;
+}
+
+/* Firefox track */
+.now-playing input.progress-bar[type="range"]::-moz-range-track {
+    width: 100% !important;
+    height: 5px !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(242, 238, 230, 0.16) !important;
+}
+
+/* Firefox progress */
+.now-playing input.progress-bar[type="range"]::-moz-range-progress {
+    height: 5px !important;
+    border-radius: 999px !important;
+    background: var(--mel-ember) !important;
+}
+
+/* Firefox thumb */
+.now-playing input.progress-bar[type="range"]::-moz-range-thumb {
+    width: 14px !important;
+    height: 14px !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: var(--mel-ember-light) !important;
+}
+
+/* If progress-bar is a DIV, retain the same visual size. */
+.now-playing .progress-area>.progress-bar:not(input) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 700px !important;
+    height: 5px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(242, 238, 230, 0.16) !important;
+    overflow: hidden !important;
+}
+
+/* Time labels use the exact same width as the timeline. */
+.now-playing .progress-area .time-row {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin: 9px 0 0 !important;
+    padding: 0 !important;
+}
+
+.now-playing .progress-area .time-row span {
+    flex: 0 0 auto !important;
+}
+
+/* Player controls stay centered under the timeline. */
+.now-playing .main-controls {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 20px auto 0 !important;
+}
+
+/* Don't make the player unnecessarily tall. */
+.now-playing {
+    padding-bottom: 28px !important;
+}
+
+@media (max-width: 700px) {
+    .now-playing .progress-area {
+        width: calc(100% - 28px) !important;
+    }
+}
