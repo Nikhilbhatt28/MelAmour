@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 /* =========================================================
    MELAMOUR — CINEMATIC OBSIDIAN & EMBER MUSIC ROOM
    ========================================================= */
@@ -1420,6 +1421,297 @@ input[type="range"],
     }
 
     .progress-area {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   MELAMOUR ROOM — FINAL ART DIRECTION
+   Same cinematic guitar language as the landing page.
+   No gold dashboard look.
+   ========================================================= */
+
+.room-page {
+    --mel-bg: #0b0c0b;
+    --mel-panel: rgba(12, 14, 13, 0.76);
+    --mel-panel-soft: rgba(19, 21, 19, 0.72);
+
+    --mel-border: rgba(242, 238, 230, 0.10);
+    --mel-border-soft: rgba(242, 238, 230, 0.055);
+
+    --mel-ember: #c56f48;
+    --mel-ember-light: #e3a078;
+    --mel-ember-glow: rgba(197, 111, 72, 0.20);
+
+    --mel-text: #f2eee6;
+    --mel-text-soft: #aaa69d;
+    --mel-muted: #77746d;
+
+    font-family: "Manrope", sans-serif;
+
+    background:
+        linear-gradient(90deg,
+            rgba(6, 7, 6, 0.88),
+            rgba(8, 9, 8, 0.64) 48%,
+            rgba(8, 9, 8, 0.82)),
+        url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=90") center / cover fixed no-repeat;
+}
+
+/* large guitar / studio photograph behind the room */
+.room-page::after {
+    content: "";
+    position: fixed;
+    inset: -4%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg,
+            rgba(5, 6, 5, 0.44),
+            rgba(5, 6, 5, 0.88)),
+        url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=90") center / cover no-repeat;
+    opacity: 0.48;
+    filter: saturate(0.70) contrast(1.04);
+    transform: scale(1.03);
+    animation: roomGuitarZoom 28s ease-in-out infinite alternate;
+}
+
+@keyframes roomGuitarZoom {
+    from {
+        transform: scale(1.03);
+    }
+
+    to {
+        transform: scale(1.09);
+    }
+}
+
+.room-page::before {
+    color: rgba(227, 160, 120, 0.025);
+}
+
+/* header */
+.room-header {
+    height: 74px;
+    background: rgba(8, 9, 8, 0.68);
+    border-bottom-color: rgba(242, 238, 230, 0.09);
+}
+
+.room-brand-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.room-brand-sub {
+    color: #77746d;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.room-back,
+.room-more,
+.room-code-pill {
+    border-radius: 2px;
+    background: rgba(8, 9, 8, 0.40);
+}
+
+.room-brand-icon {
+    border-radius: 2px;
+    background: rgba(197, 111, 72, 0.10);
+    border-color: rgba(227, 160, 120, 0.20);
+    color: var(--mel-ember-light);
+    box-shadow: none;
+}
+
+/* centered cinematic player */
+.now-playing {
+    width: min(940px, 100%);
+    margin-inline: auto;
+    border-radius: 2px;
+    background:
+        linear-gradient(180deg,
+            rgba(16, 17, 15, 0.82),
+            rgba(9, 10, 9, 0.88));
+    border-color: rgba(242, 238, 230, 0.12);
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.48);
+}
+
+.now-playing-label {
+    font-size: 9px;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+}
+
+.music-dot {
+    background: var(--mel-ember);
+    box-shadow: 0 0 10px rgba(197, 111, 72, 0.5);
+}
+
+.album-large {
+    background:
+        radial-gradient(circle at 35% 30%, #40372d, #191814 48%, #080908 80%);
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.65),
+        0 0 55px rgba(197, 111, 72, 0.08);
+}
+
+.album-ring {
+    border-color: rgba(227, 160, 120, 0.16);
+}
+
+.album-center {
+    color: var(--mel-ember-light);
+    border-color: rgba(197, 111, 72, 0.30);
+}
+
+.song-details h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.song-details p {
+    color: #99958c;
+}
+
+/* timeline — single centered visual axis */
+.progress-area {
+    width: min(680px, calc(100% - 28px));
+    margin: 25px auto 0;
+}
+
+.progress-bar {
+    height: 3px;
+    background: rgba(242, 238, 230, 0.12);
+}
+
+.progress-value {
+    background: linear-gradient(90deg, #88442e, #c56f48, #e3a078);
+    box-shadow: 0 0 10px rgba(197, 111, 72, 0.18);
+}
+
+.time-row {
+    color: #77746d;
+    font-variant-numeric: tabular-nums;
+}
+
+.main-controls {
+    justify-content: center;
+}
+
+.control-small {
+    border-radius: 2px;
+}
+
+.control-play {
+    background: var(--mel-ember);
+    box-shadow: 0 12px 32px rgba(197, 111, 72, 0.20);
+}
+
+.control-play:hover {
+    background: var(--mel-ember-light);
+}
+
+/* content panels */
+.room-panels {
+    gap: 14px;
+}
+
+.room-panel {
+    border-radius: 2px;
+    background: rgba(12, 14, 13, 0.76);
+    border-color: rgba(242, 238, 230, 0.09);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.30);
+}
+
+.panel-header h2 {
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.upload-song-btn,
+.chat-input button {
+    border-radius: 2px;
+}
+
+.upload-song-btn {
+    color: var(--mel-ember-light);
+    border-color: rgba(197, 111, 72, 0.28);
+    background: rgba(197, 111, 72, 0.08);
+}
+
+.library-song,
+.person,
+.chat-message {
+    border-radius: 2px;
+}
+
+.library-song:hover:not(:disabled),
+.library-song.active {
+    background: rgba(197, 111, 72, 0.075);
+}
+
+.library-song.active {
+    border-left-color: var(--mel-ember);
+}
+
+.library-icon {
+    border-radius: 2px;
+    color: var(--mel-ember-light);
+}
+
+.chat-message {
+    background: rgba(24, 25, 22, 0.62);
+}
+
+.chat-message:hover {
+    border-color: rgba(197, 111, 72, 0.14);
+}
+
+.host-avatar {
+    background: rgba(197, 111, 72, 0.13);
+    color: var(--mel-ember-light);
+    border-color: rgba(197, 111, 72, 0.26);
+}
+
+.chat-input {
+    border-radius: 2px;
+    background: rgba(8, 9, 8, 0.76);
+}
+
+.chat-input button {
+    background: var(--mel-ember);
+}
+
+input[type="range"],
+.song-range {
+    accent-color: var(--mel-ember);
+}
+
+.audio-error {
+    color: var(--mel-ember-light);
+    background: rgba(197, 111, 72, 0.07);
+    border-color: rgba(197, 111, 72, 0.18);
+}
+
+/* footer */
+.room-footer {
+    background: rgba(7, 8, 7, 0.58);
+    border-top-color: rgba(242, 238, 230, 0.07);
+}
+
+@media (max-width: 900px) {
+    .room-page::after {
+        background-position: 58% center;
+    }
+
+    .now-playing {
         width: 100%;
     }
 }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 /* =========================================================
   MELAMOUR — CINEMATIC OBSIDIAN & EMBER MUSIC EXPERIENCE
@@ -1749,5 +1749,283 @@ h1 span {
 
   .music-player {
     width: calc(100% - 24px);
+  }
+}
+
+
+/* =========================================================
+   MELAMOUR — FINAL ART DIRECTION
+   Cinematic guitar / studio / editorial music aesthetic
+   ========================================================= */
+
+:root {
+  --font-sans: "Manrope", sans-serif;
+  --font-heading: "Cormorant Garamond", serif;
+
+  --bg-core: #0b0c0b;
+  --bg-surface: rgba(14, 16, 15, 0.72);
+  --bg-surface-hover: rgba(25, 27, 25, 0.82);
+
+  --text-main: #f2eee6;
+  --text-muted: #a7a39a;
+  --text-dimmed: #706d66;
+
+  /* muted copper — intentionally NOT gold */
+  --ember: #c56f48;
+  --ember-light: #e3a078;
+  --ember-dark: #88442e;
+  --ember-glow: rgba(197, 111, 72, 0.20);
+  --line-warm: rgba(227, 160, 120, 0.16);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #0b0c0b;
+  color: var(--text-main);
+}
+
+/* cinematic guitar background */
+.site::after {
+  content: "";
+  position: fixed;
+  inset: -3%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(6, 7, 6, 0.90) 0%,
+      rgba(8, 9, 8, 0.66) 40%,
+      rgba(8, 9, 8, 0.38) 100%),
+    linear-gradient(180deg,
+      rgba(5, 6, 5, 0.32),
+      rgba(5, 6, 5, 0.88)),
+    url("https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2400&q=90") center / cover no-repeat;
+  transform: scale(1.02);
+  opacity: 0.78;
+  filter: saturate(0.72) contrast(1.04);
+  animation: melamourHeroZoom 24s ease-in-out infinite alternate;
+}
+
+@keyframes melamourHeroZoom {
+  0% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1.085);
+  }
+}
+
+.site {
+  background: #0b0c0b;
+}
+
+.site::before {
+  color: rgba(227, 160, 120, 0.035);
+  opacity: 0.7;
+}
+
+/* navbar becomes editorial rather than app-like */
+.navbar {
+  height: 92px;
+  border-bottom: 1px solid rgba(242, 238, 230, 0.09);
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.brand-icon {
+  color: var(--ember-light);
+  filter: drop-shadow(0 0 12px rgba(197, 111, 72, 0.28));
+}
+
+.navbar nav {
+  gap: 38px;
+}
+
+.navbar nav a {
+  color: rgba(242, 238, 230, 0.72);
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+  color: #f2eee6;
+}
+
+.navbar nav a.active::after {
+  width: 22px;
+  height: 1px;
+  border-radius: 0;
+  background: var(--ember-light);
+  box-shadow: none;
+}
+
+.nav-cta {
+  border-radius: 2px;
+  border-color: rgba(242, 238, 230, 0.20);
+  background: rgba(8, 9, 8, 0.28);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+/* hero typography */
+.hero {
+  min-height: calc(100vh - 92px);
+  margin-top: 0;
+  align-items: center;
+}
+
+.hero-copy {
+  padding: 30px 0 70px;
+}
+
+.eyebrow {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ember-light);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  backdrop-filter: none;
+}
+
+.eyebrow svg {
+  color: var(--ember-light);
+}
+
+h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(68px, 7.6vw, 118px);
+  line-height: 0.88;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  margin: 24px 0 28px;
+  max-width: 760px;
+}
+
+h1 span {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: var(--ember-light);
+}
+
+.hero-copy>p {
+  max-width: 500px;
+  color: rgba(242, 238, 230, 0.66);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.hero-actions {
+  margin-top: 34px;
+  gap: 12px;
+}
+
+.primary-btn,
+.secondary-btn {
+  min-height: 50px;
+  min-width: 148px;
+  padding-inline: 24px;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.primary-btn {
+  background: var(--ember);
+  border-color: var(--ember);
+  box-shadow: 0 14px 38px rgba(197, 111, 72, 0.18);
+}
+
+.primary-btn:hover {
+  background: var(--ember-light);
+  color: #15110e;
+}
+
+.secondary-btn {
+  border-color: rgba(242, 238, 230, 0.20);
+  background: rgba(10, 11, 10, 0.30);
+}
+
+/* visual scene: quieter so real background image leads */
+.visual {
+  min-height: 560px;
+}
+
+.visual-glow {
+  background: radial-gradient(circle,
+      rgba(197, 111, 72, 0.12),
+      transparent 70%);
+}
+
+.room-scene {
+  border-radius: 2px;
+  border-color: rgba(242, 238, 230, 0.14);
+  background: rgba(10, 11, 10, 0.36);
+  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.58);
+}
+
+/* player */
+.music-player {
+  border-radius: 2px;
+  background: rgba(10, 11, 10, 0.90);
+  border-color: rgba(227, 160, 120, 0.18);
+}
+
+.album-art {
+  border-radius: 2px;
+  background: rgba(197, 111, 72, 0.12);
+  border-color: rgba(227, 160, 120, 0.20);
+  color: var(--ember-light);
+}
+
+.player-status {
+  color: var(--ember-light);
+}
+
+.player-status-dot {
+  background: var(--ember);
+  box-shadow: 0 0 10px rgba(197, 111, 72, 0.5);
+}
+
+.waveform span {
+  background: var(--ember);
+}
+
+.play-btn {
+  background: var(--ember) !important;
+  box-shadow: 0 10px 26px rgba(197, 111, 72, 0.22);
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--ember-dark), var(--ember-light));
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: clamp(62px, 13vw, 92px);
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 40px;
+  }
+
+  .hero-copy {
+    padding-bottom: 20px;
   }
 }
