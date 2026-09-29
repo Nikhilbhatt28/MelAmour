@@ -1,127 +1,62 @@
 /* =========================================================
-   MELAMOUR — AMBIENT MUSIC TOGGLE
-   Add this at the end of App.css
+   MELAMOUR — FINAL CLICK + LANDING SCROLL FIX
+   Add at the VERY END of App.css
    ========================================================= */
 
-.ambient-player {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+/* Decorative cinematic layers must NEVER intercept clicks. */
+.site::before,
+.site::after,
+.ambient,
+.ambient-one,
+.ambient-two,
+.visual-glow {
+  pointer-events: none !important;
 }
 
-.ambient-art {
-  flex: 0 0 48px;
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-}
-
-.ambient-player .track-info {
-  min-width: 145px;
-}
-
-.ambient-player .track-info strong {
-  display: block;
-}
-
-.ambient-player .track-info span {
-  display: block;
-}
-
-.ambient-player .wave {
-  flex: 1;
-  min-width: 90px;
-  opacity: 0.9;
-}
-
-.ambient-toggle {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  padding: 5px 7px 5px 6px;
-
-  border: 1px solid rgba(242, 238, 230, 0.12);
-  border-radius: 999px;
-
-  color: #9a968e;
-  background: rgba(255, 255, 255, 0.035);
-
-  cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.ambient-toggle:hover {
-  border-color: rgba(227, 160, 120, 0.30);
-}
-
-.ambient-toggle-track {
+/* Keep all real landing-page controls above visual layers. */
+.site .navbar,
+.site .hero,
+.site .features,
+.site button,
+.site a {
   position: relative;
-  width: 31px;
-  height: 17px;
-
-  display: block;
-
-  border-radius: 999px;
-  background: rgba(242, 238, 230, 0.16);
-
-  transition: background 0.2s ease;
+  z-index: 10;
 }
 
-.ambient-toggle-thumb {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-
-  width: 11px;
-  height: 11px;
-
-  border-radius: 50%;
-  background: #8a877f;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+/* The landing page starts at the viewport top. */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
 }
 
-.ambient-toggle.is-on {
-  color: #e3a078;
-  border-color: rgba(197, 111, 72, 0.28);
-  background: rgba(197, 111, 72, 0.07);
+body {
+  overflow-x: hidden;
 }
 
-.ambient-toggle.is-on .ambient-toggle-track {
-  background: rgba(197, 111, 72, 0.48);
+/* Prevent the cinematic backdrop from creating a weird stacking layer. */
+.site {
+  position: relative;
+  isolation: isolate;
 }
 
-.ambient-toggle.is-on .ambient-toggle-thumb {
-  transform: translateX(14px);
-  background: #e3a078;
-  box-shadow: 0 0 9px rgba(197, 111, 72, 0.40);
+/* Buttons must remain real clickable controls. */
+.site button {
+  pointer-events: auto !important;
+  cursor: pointer;
 }
 
-.ambient-toggle-label {
-  min-width: 23px;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.10em;
+.site button:disabled {
+  cursor: not-allowed;
 }
 
-@media (max-width: 700px) {
-  .ambient-player {
-    gap: 10px;
-  }
-
-  .ambient-player .track-info {
-    min-width: 105px;
-  }
-
-  .ambient-player .wave {
-    display: none;
-  }
-} 
+/* Don't let the decorative visual overlap the hero controls. */
+.hero-copy,
+.hero-actions,
+.primary-btn,
+.secondary-btn,
+.nav-cta {
+  position: relative;
+  z-index: 20;
+}

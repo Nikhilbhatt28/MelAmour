@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import {
   ArrowRight,
@@ -117,27 +117,44 @@ function App() {
     setBgMusicOn((previous) => !previous);
   };
 
-  // Always open Home/Room from the top instead of restoring the previous scroll position.
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "auto",
+  // Always start Home/Room at the very top.
+  // useLayoutEffect runs before the browser paints the new page.
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
     });
+
+    const timer = window.setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
+
+    return () => window.clearTimeout(timer);
   }, [currentPage]);
 
-  // Prevent the browser from restoring an old scroll position on reload.
+  // Stop Chrome/Edge from restoring the previous scroll position.
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
 
+    const forceTop = () => {
+      if (currentPage === "home") {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    window.addEventListener("pageshow", forceTop);
+
     return () => {
+      window.removeEventListener("pageshow", forceTop);
+
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "auto";
       }
     };
-  }, []);
+  }, [currentPage]);
 
   // =========================================================
   // CREATE ROOM
@@ -450,6 +467,7 @@ function App() {
         </nav>
 
         <button
+          type="button"
           className="nav-cta"
           onClick={() => {
             setCreateError("");
@@ -487,6 +505,7 @@ function App() {
 
             <div className="hero-actions">
               <button
+                type="button"
                 className="primary-btn"
                 onClick={() => {
                   setCreateError("");
@@ -499,6 +518,7 @@ function App() {
               </button>
 
               <button
+                type="button"
                 className="secondary-btn"
                 onClick={() => {
                   setJoinError("");
@@ -756,6 +776,7 @@ function App() {
                 )}
 
                 <button
+                  type="button"
                   className="create-modal-btn"
                   onClick={createRoom}
                   disabled={creatingRoom}
@@ -799,7 +820,11 @@ function App() {
                   </button>
                 </div>
 
-                <button className="create-modal-btn" onClick={enterCreatedRoom}>
+                <button
+                  type="button"
+                  className="create-modal-btn"
+                  onClick={enterCreatedRoom}
+                >
                   Enter Room
                   <ArrowRight size={17} />
                 </button>
