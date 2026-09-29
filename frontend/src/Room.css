@@ -47,13 +47,17 @@
     flex-direction: column;
 
     background:
-        radial-gradient(circle at 50% 0%,
+        radial-gradient(
+            circle at 50% 0%,
             rgba(217, 166, 83, 0.055),
-            transparent 35%),
-        linear-gradient(180deg,
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
             #0a0b0c 0%,
             #090a0b 55%,
-            #080909 100%);
+            #080909 100%
+        );
 
     box-sizing: border-box;
     overflow-x: hidden;
@@ -290,9 +294,11 @@
     padding: 16px 18px;
 
     background:
-        radial-gradient(circle at 50% 35%,
+        radial-gradient(
+            circle at 50% 35%,
             rgba(217, 166, 83, 0.045),
-            transparent 45%),
+            transparent 45%
+        ),
         rgba(12, 14, 15, 0.94);
 
     border: 1px solid var(--mel-border);
@@ -343,10 +349,12 @@
     place-items: center;
 
     background:
-        radial-gradient(circle at 35% 30%,
+        radial-gradient(
+            circle at 35% 30%,
             #303234,
             #151718 45%,
-            #080909 76%);
+            #080909 76%
+        );
 
     border: 1px solid rgba(255, 255, 255, 0.07);
 
@@ -594,7 +602,10 @@
     display: grid;
 
     grid-template-columns:
-        minmax(245px, 1.5fr) minmax(140px, 0.7fr) minmax(380px, 2.3fr) minmax(175px, 0.5fr);
+        minmax(245px, 1.5fr)
+        minmax(140px, 0.7fr)
+        minmax(380px, 2.3fr)
+        minmax(175px, 0.5fr);
 
     gap: 14px;
 
@@ -754,7 +765,7 @@
     opacity: 0.78;
 }
 
-.library-song>div:nth-child(2) {
+.library-song > div:nth-child(2) {
     flex: 1;
     min-width: 0;
 }
@@ -1141,7 +1152,8 @@ input[type="range"],
     scrollbar-width: thin;
 
     scrollbar-color:
-        rgba(217, 166, 83, 0.28) transparent;
+        rgba(217, 166, 83, 0.28)
+        transparent;
 }
 
 .room-page *::-webkit-scrollbar {
@@ -1189,7 +1201,7 @@ input[type="range"],
     font-size: 8px;
 }
 
-.room-footer>div {
+.room-footer > div {
     display: flex;
 
     align-items: center;
@@ -1231,7 +1243,10 @@ input[type="range"],
 
     .room-panels {
         grid-template-columns:
-            minmax(220px, 1.35fr) minmax(135px, .7fr) minmax(320px, 2fr) minmax(170px, .7fr);
+            minmax(220px, 1.35fr)
+            minmax(135px, .7fr)
+            minmax(320px, 2fr)
+            minmax(170px, .7fr);
     }
 
     .room-main {
